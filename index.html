@@ -22,7 +22,7 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* â”€â”€ Theme Definitions â”€â”€ */
+/* â”€â”€ 1. Monkeytype Theme (Default) â”€â”€ */
 body.theme-monkeytype { background-color: #323437; color: #d1d0c5; }
 body.theme-monkeytype .c-main { color: #e2b714; }
 body.theme-monkeytype .c-sub { color: #646669; }
@@ -30,38 +30,35 @@ body.theme-monkeytype .c-text { color: #d1d0c5; }
 body.theme-monkeytype .c-err { color: #ca4754; }
 body.theme-monkeytype .bg-panel { background-color: #2c2e31; }
 body.theme-monkeytype .bg-accent { background-color: #e2b714; color: #2c2e31; }
+body.theme-monkeytype #bottom-bar { border-top-color: #3d3f42; }
+body.theme-monkeytype #res-bottom-grid { border-top-color: #3d3f42; }
+body.theme-monkeytype .res-btn { background: #2c2e31; border: 1px solid #444; color: #d1d0c5; }
+body.theme-monkeytype #settings-modal { background: rgba(30, 32, 35, 0.97); }
+body.theme-monkeytype .set-row { border-bottom-color: #2f2f2f; }
+body.theme-monkeytype .set-btn { background: #333; color: #888; }
+body.theme-monkeytype .set-btn.active { background: #e2b714; color: #111; }
+body.theme-monkeytype .caret-bar .current-char { border-left: 2px solid #e2b714; }
+body.theme-monkeytype .caret-block .current-char { background-color: rgba(226, 183, 20, 0.35); }
+body.theme-monkeytype .caret-underline .current-char { border-bottom: 2px solid #e2b714; }
 
-body.theme-matrix { background-color: #0d1117; color: #00ff66; }
-body.theme-matrix .c-main { color: #00ff66; }
-body.theme-matrix .c-sub { color: #1f6feb; }
-body.theme-matrix .c-text { color: #58a6ff; }
-body.theme-matrix .c-err { color: #ff3366; }
-body.theme-matrix .bg-panel { background-color: #161b22; }
-body.theme-matrix .bg-accent { background-color: #00ff66; color: #0d1117; }
-
-body.theme-dracula { background-color: #282a36; color: #f8f8f2; }
-body.theme-dracula .c-main { color: #bd93f9; }
-body.theme-dracula .c-sub { color: #6272a4; }
-body.theme-dracula .c-text { color: #f8f8f2; }
-body.theme-dracula .c-err { color: #ff5555; }
-body.theme-dracula .bg-panel { background-color: #21222c; }
-body.theme-dracula .bg-accent { background-color: #bd93f9; color: #282a36; }
-
-body.theme-carbon { background-color: #161616; color: #ffffff; }
-body.theme-carbon .c-main { color: #ffffff; }
-body.theme-carbon .c-sub { color: #555555; }
-body.theme-carbon .c-text { color: #ffffff; }
-body.theme-carbon .c-err { color: #da1e28; }
-body.theme-carbon .bg-panel { background-color: #262626; }
-body.theme-carbon .bg-accent { background-color: #ffffff; color: #161616; }
-
-body.theme-paper { background-color: #f5f5f5; color: #222222; }
+/* â”€â”€ 2. Paper Theme â”€â”€ */
+body.theme-paper { background-color: #eeeeee; color: #222222; }
 body.theme-paper .c-main { color: #c62828; }
 body.theme-paper .c-sub { color: #9e9e9e; }
 body.theme-paper .c-text { color: #111111; }
-body.theme-paper .c-err { color: #b71c1c; }
+body.theme-paper .c-err { color: #d32f2f; }
 body.theme-paper .bg-panel { background-color: #e0e0e0; }
 body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
+body.theme-paper #bottom-bar { border-top-color: #cccccc; }
+body.theme-paper #res-bottom-grid { border-top-color: #cccccc; }
+body.theme-paper .res-btn { background: #e0e0e0; border: 1px solid #bbb; color: #222222; }
+body.theme-paper #settings-modal { background: rgba(238, 238, 238, 0.97); color: #222222; }
+body.theme-paper .set-row { border-bottom-color: #d6d6d6; }
+body.theme-paper .set-btn { background: #ddd; color: #666; }
+body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
+body.theme-paper .caret-bar .current-char { border-left: 2px solid #c62828; }
+body.theme-paper .caret-block .current-char { background-color: rgba(198, 40, 40, 0.3); }
+body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c62828; }
 
 /* â”€â”€ App Container â”€â”€ */
 #app-container {
@@ -127,7 +124,7 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   border: none;
   font-family: inherit;
   font-size: 12px;
-  padding: 2px 6px;
+  padding: 3px 6px;
   margin-left: 2px;
   cursor: pointer;
   border-radius: 3px;
@@ -196,7 +193,7 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   position: relative;
 }
 
-/* â”€â”€ TAPE MODE STYLING â”€â”€ */
+/* â”€â”€ Tape Mode â”€â”€ */
 #app-container.tape-active #words-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -218,45 +215,16 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   line-height: 34px;
 }
 
-/* â”€â”€ Carets â”€â”€ */
-.caret-bar .current-char {
-  border-left: 2px solid #e2b714;
+/* Caret Blinking */
+.current-char {
   margin-left: -1px;
   padding-left: 1px;
   -webkit-animation: blinkBar 0.9s infinite;
   animation: blinkBar 0.9s infinite;
 }
 
-.caret-block .current-char {
-  background-color: rgba(226, 183, 20, 0.35);
-  border-radius: 2px;
-  -webkit-animation: blinkBlock 0.9s infinite;
-  animation: blinkBlock 0.9s infinite;
-}
-
-.caret-underline .current-char {
-  border-bottom: 2px solid #e2b714;
-  -webkit-animation: blinkBar 0.9s infinite;
-  animation: blinkBar 0.9s infinite;
-}
-
-body.theme-matrix .caret-bar .current-char { border-color: #00ff66; }
-body.theme-matrix .caret-block .current-char { background-color: rgba(0, 255, 102, 0.35); }
-body.theme-matrix .caret-underline .current-char { border-color: #00ff66; }
-
-body.theme-dracula .caret-bar .current-char { border-color: #bd93f9; }
-body.theme-dracula .caret-block .current-char { background-color: rgba(189, 147, 249, 0.35); }
-body.theme-dracula .caret-underline .current-char { border-color: #bd93f9; }
-
-body.theme-paper .caret-bar .current-char { border-color: #c62828; }
-body.theme-paper .caret-block .current-char { background-color: rgba(198, 40, 40, 0.35); }
-body.theme-paper .caret-underline .current-char { border-color: #c62828; }
-
 @-webkit-keyframes blinkBar { 0%, 100% { border-color: inherit; } 50% { border-color: transparent; } }
 @keyframes blinkBar { 0%, 100% { border-color: inherit; } 50% { border-color: transparent; } }
-
-@-webkit-keyframes blinkBlock { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-@keyframes blinkBlock { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
 /* â”€â”€ Hidden Input â”€â”€ */
 #hidden-input {
@@ -397,9 +365,6 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
 
 .res-btn {
   display: inline-block;
-  background: #2c2e31;
-  border: 1px solid #444;
-  color: #d1d0c5;
   font-family: inherit;
   font-size: 14px;
   padding: 4px 14px;
@@ -409,13 +374,13 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   outline: none;
 }
 .res-btn:hover, .res-btn:active {
-  background-color: #3e4043;
+  opacity: 0.8;
 }
 
 /* Words History */
 #words-history-panel {
   display: none;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.15);
   border-radius: 4px;
   padding: 6px;
   font-size: 12px;
@@ -431,22 +396,17 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   display: inline-block;
   margin-right: 6px;
 }
-.hist-word.correct { color: #d1d0c5; }
+.hist-word.correct { opacity: 0.9; }
 .hist-word.incorrect { color: #ca4754; text-decoration: line-through; }
 
-/* â”€â”€ Settings Modal â”€â”€ */
+/* â”€â”€ Settings Modal (100% Reliable display:block) â”€â”€ */
 #settings-modal {
   display: none;
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(22, 24, 27, 0.96);
-  z-index: 50;
+  z-index: 100;
   padding: 10px;
   overflow-y: auto;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  flex-direction: column;
 }
 
 #settings-top {
@@ -460,7 +420,7 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   -webkit-align-items: center;
   align-items: center;
   padding-bottom: 6px;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #888;
   margin-bottom: 6px;
 }
 
@@ -474,9 +434,9 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  padding: 5px 0;
-  border-bottom: 1px solid #2f2f2f;
-  font-size: 11px;
+  padding: 6px 0;
+  border-bottom: 1px solid #333;
+  font-size: 12px;
 }
 
 .set-group {
@@ -486,26 +446,19 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
 }
 
 .set-btn {
-  background: #333;
-  color: #888;
   border: none;
   font-family: inherit;
-  font-size: 10px;
-  padding: 3px 6px;
-  margin-left: 2px;
+  font-size: 11px;
+  padding: 4px 8px;
+  margin-left: 3px;
   border-radius: 3px;
   cursor: pointer;
   outline: none;
+  font-weight: normal;
 }
-
 .set-btn.active {
-  background: #e2b714;
-  color: #111;
   font-weight: bold;
 }
-body.theme-matrix .set-btn.active { background: #00ff66; color: #0d1117; }
-body.theme-dracula .set-btn.active { background: #bd93f9; color: #282a36; }
-body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 </style>
 </head>
 <body class="theme-monkeytype">
@@ -602,21 +555,18 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     <div class="bot-hint c-sub" id="pb-tag">PB: 0</div>
   </div>
 
-  <!-- Settings Modal -->
+  <!-- Settings Modal (Only 2 themes: monkeytype & paper) -->
   <div id="settings-modal">
     <div id="settings-top">
       <b class="c-main">Settings</b>
       <button class="pill-btn c-sub" id="btn-close-settings">âœ– Close (Esc)</button>
     </div>
 
-    <!-- Theme -->
+    <!-- Theme Selection (Monkeytype & Paper only) -->
     <div class="set-row">
       <span class="c-text">Theme</span>
       <div class="set-group" id="grp-theme">
-        <button class="set-btn active" data-val="monkeytype">monkey</button>
-        <button class="set-btn" data-val="matrix">matrix</button>
-        <button class="set-btn" data-val="dracula">dracula</button>
-        <button class="set-btn" data-val="carbon">carbon</button>
+        <button class="set-btn active" data-val="monkeytype">monkeytype</button>
         <button class="set-btn" data-val="paper">paper</button>
       </div>
     </div>
@@ -719,7 +669,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     wordsVal: 25,     // 25, 50, 100
     withPunct: false,
     withNum: false,
-    theme: 'monkeytype',
+    theme: 'monkeytype', // 'monkeytype' | 'paper'
     tape: 'off',      // 'off' | 'word' | 'letter'
     diff: 'normal',   // 'normal' | 'expert' | 'master'
     conf: 'off',      // 'off' | 'on' | 'max'
@@ -790,6 +740,9 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
         for (var k in parsed) { cfg[k] = parsed[k]; }
       }
     } catch(e) {}
+    if (cfg.theme !== 'monkeytype' && cfg.theme !== 'paper') {
+      cfg.theme = 'monkeytype';
+    }
     applySettingsUI();
   }
 
@@ -936,7 +889,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     wordsInner.style.marginLeft = '-' + offset + 'px';
   }
 
-  /* â”€â”€ Fast Input Handling â”€â”€ */
+  /* â”€â”€ Input Processing â”€â”€ */
   function updateWordDisplay() {
     var wordEl = document.getElementById('w-' + wordIndex);
     if (!wordEl) return;
@@ -1311,12 +1264,17 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     }
     maxW = Math.ceil(maxW / 20) * 20 + 20;
 
+    var isPaper = (cfg.theme === 'paper');
+    var labelColor = isPaper ? '#888888' : '#646669';
+    var gridColor = isPaper ? '#d8d8d8' : '#3d3f42';
+    var themeColor = isPaper ? '#c62828' : '#e2b714';
+
     // Grid
     ctx.font = '8px monospace';
-    ctx.fillStyle = '#646669';
+    ctx.fillStyle = labelColor;
     ctx.textAlign = 'right';
     ctx.textBaseline = 'middle';
-    ctx.strokeStyle = '#3d3f42';
+    ctx.strokeStyle = gridColor;
     ctx.lineWidth = 1;
 
     var steps = 2;
@@ -1336,7 +1294,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
     // 1. Raw line
     ctx.beginPath();
-    ctx.strokeStyle = '#646669';
+    ctx.strokeStyle = labelColor;
     ctx.lineWidth = 1.5;
     if (ctx.setLineDash) ctx.setLineDash([2, 2]);
     for (var r = 0; r < data.length; r++) {
@@ -1349,12 +1307,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     if (ctx.setLineDash) ctx.setLineDash([]);
 
     // 2. Net WPM line
-    var themeColor = '#e2b714';
-    if (cfg.theme === 'matrix') themeColor = '#00ff66';
-    if (cfg.theme === 'dracula') themeColor = '#bd93f9';
-    if (cfg.theme === 'carbon') themeColor = '#ffffff';
-    if (cfg.theme === 'paper') themeColor = '#c62828';
-
     ctx.beginPath();
     for (var w = 0; w < data.length; w++) {
       var wx = getX(w);
@@ -1377,7 +1329,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     }
 
     // 4. X-Axis Ticks
-    ctx.fillStyle = '#646669';
+    ctx.fillStyle = labelColor;
     ctx.font = '8px monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
@@ -1465,7 +1417,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
     if (code === 27) {
       e.preventDefault();
-      if (settingsModal.style.display === 'flex' || settingsModal.style.display === '-webkit-flex') {
+      if (settingsModal.style.display === 'block') {
         settingsModal.style.display = 'none';
         hiddenInput.focus();
       } else {
@@ -1510,14 +1462,14 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       resetTest(false);
       return;
     }
-    if (document.activeElement !== hiddenInput && !isFinished) {
+    if (document.activeElement !== hiddenInput && !isFinished && settingsModal.style.display !== 'block') {
       hiddenInput.focus();
     }
   });
 
   hiddenInput.addEventListener('focus', function() { focusPrompt.style.display = 'none'; });
   hiddenInput.addEventListener('blur', function() {
-    if (!isFinished && settingsModal.style.display !== 'flex' && settingsModal.style.display !== '-webkit-flex') {
+    if (!isFinished && settingsModal.style.display !== 'block') {
       focusPrompt.style.display = '-webkit-flex';
       focusPrompt.style.display = 'flex';
     }
@@ -1555,16 +1507,18 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
   btnRestart.addEventListener('click', function() { resetTest(false); });
 
+  /* â”€â”€ Settings Modal Open / Close (100% Reliable display:block) â”€â”€ */
   btnSettings.addEventListener('click', function(e) {
+    e.preventDefault();
     e.stopPropagation();
-    settingsModal.style.display = '-webkit-flex';
-    settingsModal.style.display = 'flex';
+    settingsModal.style.display = 'block';
   });
 
   btnCloseSettings.addEventListener('click', function(e) {
+    e.preventDefault();
     e.stopPropagation();
     settingsModal.style.display = 'none';
-    hiddenInput.focus();
+    setTimeout(function() { hiddenInput.focus(); }, 20);
   });
 
   function bindSettingGroup(id, prop) {
@@ -1573,7 +1527,8 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     var btns = g.getElementsByTagName('button');
     for (var i = 0; i < btns.length; i++) {
       (function(btn) {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
           cfg[prop] = btn.getAttribute('data-val');
           saveSettings();
           applySettingsUI();
@@ -1590,14 +1545,16 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
   bindSettingGroup('grp-stop', 'stop');
   bindSettingGroup('grp-caret', 'caret');
 
-  setPunct.addEventListener('click', function() {
+  setPunct.addEventListener('click', function(e) {
+    e.stopPropagation();
     cfg.withPunct = !cfg.withPunct;
     saveSettings();
     applySettingsUI();
     resetTest(false);
   });
 
-  setNum.addEventListener('click', function() {
+  setNum.addEventListener('click', function(e) {
+    e.stopPropagation();
     cfg.withNum = !cfg.withNum;
     saveSettings();
     applySettingsUI();
