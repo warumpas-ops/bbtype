@@ -22,7 +22,7 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* â”€â”€ 1. Monkeytype Theme (Default) â”€â”€ */
+/* â”€â”€ 1. Monkeytype Theme (Default Dark) â”€â”€ */
 body.theme-monkeytype { background-color: #323437; color: #d1d0c5; }
 body.theme-monkeytype .c-main { color: #e2b714; }
 body.theme-monkeytype .c-sub { color: #646669; }
@@ -33,7 +33,7 @@ body.theme-monkeytype .bg-accent { background-color: #e2b714; color: #2c2e31; }
 body.theme-monkeytype #bottom-bar { border-top-color: #3d3f42; }
 body.theme-monkeytype #res-bottom-grid { border-top-color: #3d3f42; }
 body.theme-monkeytype .res-btn { background: #2c2e31; border: 1px solid #444; color: #d1d0c5; }
-body.theme-monkeytype #settings-modal { background: rgba(30, 32, 35, 0.97); }
+body.theme-monkeytype #settings-modal { background: rgba(30, 32, 35, 0.97); color: #d1d0c5; }
 body.theme-monkeytype .set-row { border-bottom-color: #2f2f2f; }
 body.theme-monkeytype .set-btn { background: #333; color: #888; }
 body.theme-monkeytype .set-btn.active { background: #e2b714; color: #111; }
@@ -41,24 +41,24 @@ body.theme-monkeytype .caret-bar .current-char { border-left: 2px solid #e2b714;
 body.theme-monkeytype .caret-block .current-char { background-color: rgba(226, 183, 20, 0.35); }
 body.theme-monkeytype .caret-underline .current-char { border-bottom: 2px solid #e2b714; }
 
-/* â”€â”€ 2. Paper Theme â”€â”€ */
-body.theme-paper { background-color: #eeeeee; color: #222222; }
-body.theme-paper .c-main { color: #c62828; }
-body.theme-paper .c-sub { color: #9e9e9e; }
-body.theme-paper .c-text { color: #111111; }
-body.theme-paper .c-err { color: #d32f2f; }
-body.theme-paper .bg-panel { background-color: #e0e0e0; }
-body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
+/* â”€â”€ 2. Official Monkeytype Paper Theme (Clean Monochrome) â”€â”€ */
+body.theme-paper { background-color: #eeeeee; color: #444444; }
+body.theme-paper .c-main { color: #444444; }
+body.theme-paper .c-sub { color: #b2b2b2; }
+body.theme-paper .c-text { color: #444444; }
+body.theme-paper .c-err { color: #d70000; }
+body.theme-paper .bg-panel { background-color: #dddddd; }
+body.theme-paper .bg-accent { background-color: #444444; color: #eeeeee; }
 body.theme-paper #bottom-bar { border-top-color: #cccccc; }
 body.theme-paper #res-bottom-grid { border-top-color: #cccccc; }
-body.theme-paper .res-btn { background: #e0e0e0; border: 1px solid #bbb; color: #222222; }
-body.theme-paper #settings-modal { background: rgba(238, 238, 238, 0.97); color: #222222; }
+body.theme-paper .res-btn { background: #dddddd; border: 1px solid #bbb; color: #444444; }
+body.theme-paper #settings-modal { background: rgba(238, 238, 238, 0.98); color: #444444; }
 body.theme-paper .set-row { border-bottom-color: #d6d6d6; }
-body.theme-paper .set-btn { background: #ddd; color: #666; }
-body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
-body.theme-paper .caret-bar .current-char { border-left: 2px solid #c62828; }
-body.theme-paper .caret-block .current-char { background-color: rgba(198, 40, 40, 0.3); }
-body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c62828; }
+body.theme-paper .set-btn { background: #dddddd; color: #777777; }
+body.theme-paper .set-btn.active { background: #444444; color: #eeeeee; }
+body.theme-paper .caret-bar .current-char { border-left: 2px solid #444444; }
+body.theme-paper .caret-block .current-char { background-color: rgba(68, 68, 68, 0.25); }
+body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #444444; }
 
 /* â”€â”€ App Container â”€â”€ */
 #app-container {
@@ -178,6 +178,8 @@ body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c628
   -webkit-transition: margin-top 0.1s ease-out, margin-left 0.1s ease-out;
   transition: margin-top 0.1s ease-out, margin-left 0.1s ease-out;
   padding-top: 2px;
+  display: inline-block;
+  min-width: 100%;
 }
 
 .word {
@@ -193,7 +195,7 @@ body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c628
   position: relative;
 }
 
-/* â”€â”€ Tape Mode â”€â”€ */
+/* â”€â”€ TAPE MODE â”€â”€ */
 #app-container.tape-active #words-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -201,12 +203,14 @@ body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c628
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
+  overflow: hidden;
   white-space: nowrap;
 }
 
 #app-container.tape-active #words-inner {
   white-space: nowrap;
   margin-top: 0 !important;
+  display: inline-block;
 }
 
 #app-container.tape-active .word {
@@ -399,7 +403,7 @@ body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c628
 .hist-word.correct { opacity: 0.9; }
 .hist-word.incorrect { color: #ca4754; text-decoration: line-through; }
 
-/* â”€â”€ Settings Modal (100% Reliable display:block) â”€â”€ */
+/* â”€â”€ Settings Modal â”€â”€ */
 #settings-modal {
   display: none;
   position: absolute;
@@ -555,14 +559,14 @@ body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c628
     <div class="bot-hint c-sub" id="pb-tag">PB: 0</div>
   </div>
 
-  <!-- Settings Modal (Only 2 themes: monkeytype & paper) -->
+  <!-- Settings Modal (Strictly Monkeytype and Official Paper themes) -->
   <div id="settings-modal">
     <div id="settings-top">
       <b class="c-main">Settings</b>
       <button class="pill-btn c-sub" id="btn-close-settings">âœ– Close (Esc)</button>
     </div>
 
-    <!-- Theme Selection (Monkeytype & Paper only) -->
+    <!-- Theme Selection -->
     <div class="set-row">
       <span class="c-text">Theme</span>
       <div class="set-group" id="grp-theme">
@@ -864,29 +868,36 @@ body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c628
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  /* â”€â”€ Tape Mode Horizontal Scrolling â”€â”€ */
+  /* â”€â”€ Robust Horizontal Tape Scrolling â”€â”€ */
   function scrollTape() {
     if (cfg.tape === 'off') return;
     var wordEl = document.getElementById('w-' + wordIndex);
     if (!wordEl) return;
 
-    var wrapperW = wordsWrapper.clientWidth || 320;
-    var targetX = wordEl.offsetLeft;
+    var wrapperW = wordsWrapper.offsetWidth || 320;
+    var targetX = 0;
 
     if (cfg.tape === 'letter') {
       var charIdx = hiddenInput.value.length;
-      var spans = wordEl.children;
+      var spans = wordEl.getElementsByTagName('span');
       if (charIdx < spans.length) {
-        targetX = wordEl.offsetLeft + spans[charIdx].offsetLeft;
+        // Direct pixel offset from wordsInner
+        targetX = spans[charIdx].offsetLeft;
       } else if (spans.length > 0) {
         var last = spans[spans.length - 1];
-        targetX = wordEl.offsetLeft + last.offsetLeft + last.offsetWidth;
+        targetX = last.offsetLeft + last.offsetWidth;
+      } else {
+        targetX = wordEl.offsetLeft;
       }
+    } else {
+      // 'word' mode: center the current word
+      targetX = wordEl.offsetLeft;
     }
 
-    var offset = targetX - (wrapperW / 2) + 20;
+    var targetCenter = wrapperW / 2;
+    var offset = targetX - targetCenter;
     if (offset < 0) offset = 0;
-    wordsInner.style.marginLeft = '-' + offset + 'px';
+    wordsInner.style.marginLeft = '-' + Math.round(offset) + 'px';
   }
 
   /* â”€â”€ Input Processing â”€â”€ */
@@ -1166,7 +1177,6 @@ body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c628
     if (cfg.mode === 'time') elapsed = cfg.timeVal;
     if (elapsed <= 0) elapsed = 1;
 
-    // Flush last word
     var val = hiddenInput.value;
     var target = activeWords[wordIndex] || '';
     for (var i = 0; i < val.length; i++) {
@@ -1266,8 +1276,8 @@ body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c628
 
     var isPaper = (cfg.theme === 'paper');
     var labelColor = isPaper ? '#888888' : '#646669';
-    var gridColor = isPaper ? '#d8d8d8' : '#3d3f42';
-    var themeColor = isPaper ? '#c62828' : '#e2b714';
+    var gridColor = isPaper ? '#d0d0d0' : '#3d3f42';
+    var themeColor = isPaper ? '#444444' : '#e2b714';
 
     // Grid
     ctx.font = '8px monospace';
@@ -1507,7 +1517,6 @@ body.theme-paper .caret-underline .current-char { border-bottom: 2px solid #c628
 
   btnRestart.addEventListener('click', function() { resetTest(false); });
 
-  /* â”€â”€ Settings Modal Open / Close (100% Reliable display:block) â”€â”€ */
   btnSettings.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
