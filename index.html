@@ -78,7 +78,7 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   position: relative;
 }
 
-/* â”€â”€ View State Toggling (100% Reliable in WebKit) â”€â”€ */
+/* View State Toggling */
 #results-view { display: none; }
 #app-container.state-results #stats-row { display: none; }
 #app-container.state-results #words-wrapper { display: none; }
@@ -165,7 +165,7 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
 }
 #live-wpm-val { font-weight: bold; margin-right: 8px; }
 
-/* â”€â”€ Typing Area â”€â”€ */
+/* â”€â”€ Words Display Area â”€â”€ */
 #words-wrapper {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -178,8 +178,8 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
 
 #words-inner {
   position: relative;
-  -webkit-transition: margin-top 0.1s ease-out;
-  transition: margin-top 0.1s ease-out;
+  -webkit-transition: margin-top 0.1s ease-out, margin-left 0.1s ease-out;
+  transition: margin-top 0.1s ease-out, margin-left 0.1s ease-out;
   padding-top: 2px;
 }
 
@@ -196,7 +196,29 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   position: relative;
 }
 
-/* â”€â”€ Hardware-Accelerated Carets (0 forced reflows) â”€â”€ */
+/* â”€â”€ TAPE MODE STYLING â”€â”€ */
+#app-container.tape-active #words-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+#app-container.tape-active #words-inner {
+  white-space: nowrap;
+  margin-top: 0 !important;
+}
+
+#app-container.tape-active .word {
+  margin: 0 16px 0 0;
+  font-size: 24px;
+  line-height: 34px;
+}
+
+/* â”€â”€ Carets â”€â”€ */
 .caret-bar .current-char {
   border-left: 2px solid #e2b714;
   margin-left: -1px;
@@ -295,7 +317,7 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   z-index: 10;
 }
 
-/* â”€â”€ MONKEYTYPE RESULTS SCREEN â”€â”€ */
+/* â”€â”€ RESULTS SCREEN â”€â”€ */
 #res-top-row {
   overflow: hidden;
   margin-bottom: 2px;
@@ -516,9 +538,8 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     <div id="focus-prompt" class="c-main">Tap or press any key to focus</div>
   </div>
 
-  <!-- â”€â”€ FULL MONKEYTYPE RESULTS SCREEN â”€â”€ -->
+  <!-- â”€â”€ RESULTS SCREEN â”€â”€ -->
   <div id="results-view">
-    <!-- Top Row: WPM / Acc / Test Info -->
     <div id="res-top-row">
       <div class="res-hero-stat">
         <div class="res-hero-lbl c-sub">wpm</div>
@@ -535,7 +556,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
-    <!-- Chart Canvas -->
+    <!-- Canvas Chart -->
     <div id="res-chart-container">
       <canvas id="res-canvas"></canvas>
     </div>
@@ -560,7 +581,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
-    <!-- Actions Toolbar -->
+    <!-- Action Toolbar -->
     <div id="res-actions-bar">
       <button class="res-btn" id="btn-res-next" title="Next Test">â–¶ next</button>
       <button class="res-btn" id="btn-res-repeat" title="Repeat Test">â†» repeat</button>
@@ -571,7 +592,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     <div id="words-history-panel" class="c-sub"></div>
   </div>
 
-  <!-- Hidden Input for Keystroke Capture -->
+  <!-- Hidden Input -->
   <input type="text" id="hidden-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
 
   <!-- Bottom Bar -->
@@ -588,6 +609,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       <button class="pill-btn c-sub" id="btn-close-settings">âœ– Close (Esc)</button>
     </div>
 
+    <!-- Theme -->
     <div class="set-row">
       <span class="c-text">Theme</span>
       <div class="set-group" id="grp-theme">
@@ -599,6 +621,17 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
+    <!-- Tape Mode -->
+    <div class="set-row">
+      <span class="c-text">Tape Mode</span>
+      <div class="set-group" id="grp-tape">
+        <button class="set-btn active" data-val="off">off</button>
+        <button class="set-btn" data-val="word">word</button>
+        <button class="set-btn" data-val="letter">letter</button>
+      </div>
+    </div>
+
+    <!-- Difficulty -->
     <div class="set-row">
       <span class="c-text">Difficulty</span>
       <div class="set-group" id="grp-diff">
@@ -608,6 +641,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
+    <!-- Confidence -->
     <div class="set-row">
       <span class="c-text">Confidence</span>
       <div class="set-group" id="grp-conf">
@@ -617,6 +651,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
+    <!-- Stop Error -->
     <div class="set-row">
       <span class="c-text">Stop Error</span>
       <div class="set-group" id="grp-stop">
@@ -626,6 +661,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
+    <!-- Caret -->
     <div class="set-row">
       <span class="c-text">Caret</span>
       <div class="set-group" id="grp-caret">
@@ -635,6 +671,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
+    <!-- Modes -->
     <div class="set-row">
       <span class="c-text">Modes</span>
       <div class="set-group">
@@ -683,6 +720,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     withPunct: false,
     withNum: false,
     theme: 'monkeytype',
+    tape: 'off',      // 'off' | 'word' | 'letter'
     diff: 'normal',   // 'normal' | 'expert' | 'master'
     conf: 'off',      // 'off' | 'on' | 'max'
     stop: 'off',      // 'off' | 'letter' | 'word'
@@ -692,7 +730,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
   /* â”€â”€ Runtime State â”€â”€ */
   var activeWords = [];
   var wordIndex = 0;
-  var wordHistory = []; // past typed strings
+  var wordHistory = [];
   var isRunning = false;
   var isFinished = false;
   var timerId = null;
@@ -763,7 +801,11 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
   function applySettingsUI() {
     document.body.className = 'theme-' + cfg.theme;
-    container.className = 'caret-' + cfg.caret + (isFinished ? ' state-results' : '');
+    
+    var containerClasses = 'caret-' + cfg.caret;
+    if (cfg.tape !== 'off') containerClasses += ' tape-active';
+    if (isFinished) containerClasses += ' state-results';
+    container.className = containerClasses;
 
     var headerBtns = document.getElementById('header-menu').getElementsByTagName('button');
     for (var i = 0; i < headerBtns.length; i++) {
@@ -778,6 +820,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     }
 
     syncGroupActive('grp-theme', cfg.theme);
+    syncGroupActive('grp-tape', cfg.tape);
     syncGroupActive('grp-diff', cfg.diff);
     syncGroupActive('grp-conf', cfg.conf);
     syncGroupActive('grp-stop', cfg.stop);
@@ -868,7 +911,32 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  /* â”€â”€ Input Processing â”€â”€ */
+  /* â”€â”€ Tape Mode Horizontal Scrolling â”€â”€ */
+  function scrollTape() {
+    if (cfg.tape === 'off') return;
+    var wordEl = document.getElementById('w-' + wordIndex);
+    if (!wordEl) return;
+
+    var wrapperW = wordsWrapper.clientWidth || 320;
+    var targetX = wordEl.offsetLeft;
+
+    if (cfg.tape === 'letter') {
+      var charIdx = hiddenInput.value.length;
+      var spans = wordEl.children;
+      if (charIdx < spans.length) {
+        targetX = wordEl.offsetLeft + spans[charIdx].offsetLeft;
+      } else if (spans.length > 0) {
+        var last = spans[spans.length - 1];
+        targetX = wordEl.offsetLeft + last.offsetLeft + last.offsetWidth;
+      }
+    }
+
+    var offset = targetX - (wrapperW / 2) + 20;
+    if (offset < 0) offset = 0;
+    wordsInner.style.marginLeft = '-' + offset + 'px';
+  }
+
+  /* â”€â”€ Fast Input Handling â”€â”€ */
   function updateWordDisplay() {
     var wordEl = document.getElementById('w-' + wordIndex);
     if (!wordEl) return;
@@ -924,6 +992,10 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
         updateWordDisplay();
         return;
       }
+    }
+
+    if (cfg.tape === 'letter') {
+      scrollTape();
     }
   }
 
@@ -981,12 +1053,16 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     if (nextWord && nextWord.children.length > 0) {
       nextWord.children[0].className += ' current-char';
       
-      var wordTop = nextWord.offsetTop;
-      var curMargin = Math.abs(parseInt(wordsInner.style.marginTop, 10) || 0);
-      var wrapperH = wordsWrapper.clientHeight;
+      if (cfg.tape !== 'off') {
+        scrollTape();
+      } else {
+        var wordTop = nextWord.offsetTop;
+        var curMargin = Math.abs(parseInt(wordsInner.style.marginTop, 10) || 0);
+        var wrapperH = wordsWrapper.clientHeight;
 
-      if (wordTop > curMargin + wrapperH - 40) {
-        wordsInner.style.marginTop = '-' + (wordTop - 6) + 'px';
+        if (wordTop > curMargin + wrapperH - 40) {
+          wordsInner.style.marginTop = '-' + (wordTop - 6) + 'px';
+        }
       }
     }
 
@@ -1028,6 +1104,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       rawChars = Math.max(0, rawChars - 1);
 
       updateWordDisplay();
+      if (cfg.tape !== 'off') scrollTape();
     }
   }
 
@@ -1119,7 +1196,9 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     resConsNum.textContent = '0%';
     resTimeNum.textContent = '0s';
 
-    container.className = 'caret-' + cfg.caret + ' state-results';
+    var containerClasses = 'caret-' + cfg.caret + ' state-results';
+    if (cfg.tape !== 'off') containerClasses += ' tape-active';
+    container.className = containerClasses;
     wordsHistoryPanel.style.display = 'none';
   }
 
@@ -1168,8 +1247,9 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
     savePB(netWpm);
 
-    // Switch view via CSS class state-results
-    container.className = 'caret-' + cfg.caret + ' state-results';
+    var containerClasses = 'caret-' + cfg.caret + ' state-results';
+    if (cfg.tape !== 'off') containerClasses += ' tape-active';
+    container.className = containerClasses;
     wordsHistoryPanel.style.display = 'none';
 
     setTimeout(function() {
@@ -1194,7 +1274,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     return Math.max(0, Math.min(100, Math.round(100 - cv)));
   }
 
-  /* â”€â”€ Draw HTML5 2D Canvas Chart â”€â”€ */
   function drawResultChart(finalWpm, finalRaw) {
     if (!resCanvas) return;
     var width = resCanvas.offsetWidth || 300;
@@ -1232,7 +1311,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     }
     maxW = Math.ceil(maxW / 20) * 20 + 20;
 
-    // Grid lines
+    // Grid
     ctx.font = '8px monospace';
     ctx.fillStyle = '#646669';
     ctx.textAlign = 'right';
@@ -1255,7 +1334,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     function getX(idx) { return padL + (idx / (totalPoints - 1)) * plotW; }
     function getY(w) { return padT + plotH - (w / maxW) * plotH; }
 
-    // 1. Raw Line (Dashed grey)
+    // 1. Raw line
     ctx.beginPath();
     ctx.strokeStyle = '#646669';
     ctx.lineWidth = 1.5;
@@ -1269,7 +1348,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     ctx.stroke();
     if (ctx.setLineDash) ctx.setLineDash([]);
 
-    // 2. Net WPM Line
+    // 2. Net WPM line
     var themeColor = '#e2b714';
     if (cfg.theme === 'matrix') themeColor = '#00ff66';
     if (cfg.theme === 'dracula') themeColor = '#bd93f9';
@@ -1350,8 +1429,12 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     hiddenInput.value = '';
     hiddenInput.disabled = false;
     wordsInner.style.marginTop = '0px';
+    wordsInner.style.marginLeft = '0px';
 
-    container.className = 'caret-' + cfg.caret;
+    var containerClasses = 'caret-' + cfg.caret;
+    if (cfg.tape !== 'off') containerClasses += ' tape-active';
+    container.className = containerClasses;
+
     focusPrompt.style.display = 'none';
     wordsHistoryPanel.style.display = 'none';
 
@@ -1501,6 +1584,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
   }
 
   bindSettingGroup('grp-theme', 'theme');
+  bindSettingGroup('grp-tape', 'tape');
   bindSettingGroup('grp-diff', 'diff');
   bindSettingGroup('grp-conf', 'conf');
   bindSettingGroup('grp-stop', 'stop');
