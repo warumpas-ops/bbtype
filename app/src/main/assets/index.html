@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>BBType â€” Monkeytype for BlackBerry</title>
+<title>BBType</title>
 <style>
-/* â”€â”€ Reset & Theme Variables (Pure ES5 / CSS fallback compatible) â”€â”€ */
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +22,7 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* â”€â”€ Theme Definitions (Dynamic Class on body) â”€â”€ */
+/* â”€â”€ Themes â”€â”€ */
 body.theme-monkeytype { background-color: #323437; color: #d1d0c5; }
 body.theme-monkeytype .c-main { color: #e2b714; }
 body.theme-monkeytype .c-sub { color: #646669; }
@@ -48,23 +47,23 @@ body.theme-dracula .c-err { color: #ff5555; }
 body.theme-dracula .bg-panel { background-color: #21222c; }
 body.theme-dracula .bg-accent { background-color: #bd93f9; color: #282a36; }
 
-body.theme-carbon { background-color: #161616; color: #f4f4f4; }
-body.theme-carbon .c-main { color: #f4f4f4; }
-body.theme-carbon .c-sub { color: #525252; }
+body.theme-carbon { background-color: #161616; color: #ffffff; }
+body.theme-carbon .c-main { color: #ffffff; }
+body.theme-carbon .c-sub { color: #555555; }
 body.theme-carbon .c-text { color: #ffffff; }
 body.theme-carbon .c-err { color: #da1e28; }
 body.theme-carbon .bg-panel { background-color: #262626; }
 body.theme-carbon .bg-accent { background-color: #ffffff; color: #161616; }
 
-body.theme-paper { background-color: #eeeeee; color: #333333; }
-body.theme-paper .c-main { color: #d32f2f; }
-body.theme-paper .c-sub { color: #999999; }
-body.theme-paper .c-text { color: #222222; }
-body.theme-paper .c-err { color: #c62828; }
+body.theme-paper { background-color: #f5f5f5; color: #222222; }
+body.theme-paper .c-main { color: #c62828; }
+body.theme-paper .c-sub { color: #9e9e9e; }
+body.theme-paper .c-text { color: #111111; }
+body.theme-paper .c-err { color: #b71c1c; }
 body.theme-paper .bg-panel { background-color: #e0e0e0; }
-body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
+body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
 
-/* â”€â”€ App Layout â”€â”€ */
+/* â”€â”€ Full Height App Container (fills 720x720 screen) â”€â”€ */
 #app-container {
   display: -webkit-box;
   display: -webkit-flex;
@@ -74,13 +73,12 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   -webkit-flex-direction: column;
   flex-direction: column;
   height: 100%;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 6px 12px 4px;
+  width: 100%;
+  padding: 8px 12px 6px;
   position: relative;
 }
 
-/* â”€â”€ Header â”€â”€ */
+/* â”€â”€ Header: Single non-wrapping compact line â”€â”€ */
 #header {
   display: -webkit-box;
   display: -webkit-flex;
@@ -92,16 +90,17 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   -webkit-align-items: center;
   align-items: center;
   height: 28px;
+  flex-shrink: 0;
 }
 
 #logo {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
 }
-#logo span { font-size: 13px; font-weight: normal; }
+#logo span { font-size: 12px; font-weight: normal; }
 
-#header-actions {
+#header-menu {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -110,64 +109,22 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   align-items: center;
 }
 
-.icon-btn {
-  background: none;
-  border: none;
-  font-family: inherit;
-  font-size: 14px;
-  padding: 3px 8px;
-  cursor: pointer;
-  border-radius: 4px;
-  outline: none;
-}
-
-#pb-badge {
-  font-size: 11px;
-  margin-right: 8px;
-}
-
-/* â”€â”€ Quick Mode Bar â”€â”€ */
-#mode-bar {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  margin: 4px 0;
-  border-radius: 5px;
-  padding: 2px 4px;
-  height: 28px;
-}
-
-.mode-btn {
+.pill-btn {
   background: none;
   border: none;
   font-family: inherit;
   font-size: 12px;
-  padding: 3px 7px;
-  margin: 0 1px;
+  padding: 3px 6px;
+  margin-left: 2px;
   cursor: pointer;
   border-radius: 3px;
   outline: none;
 }
-
-.mode-btn.active {
+.pill-btn.active {
   font-weight: bold;
 }
 
-.mode-divider {
-  display: inline-block;
-  width: 1px;
-  height: 12px;
-  background-color: #555555;
-  margin: 0 4px;
-}
-
-/* â”€â”€ Live Stats & Notice Bar â”€â”€ */
+/* â”€â”€ Live Stats Row â”€â”€ */
 #stats-row {
   display: -webkit-box;
   display: -webkit-flex;
@@ -175,99 +132,102 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  height: 32px;
-  padding: 0 2px;
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+  align-items: baseline;
+  height: 36px;
+  margin-top: 4px;
+  flex-shrink: 0;
 }
 
-#timer-box {
-  font-size: 24px;
+#timer-val {
+  font-size: 30px;
   font-weight: bold;
-  min-width: 48px;
+  line-height: 1;
 }
 
-#live-stats {
-  font-size: 13px;
+#live-indicators {
+  font-size: 14px;
   text-align: right;
 }
-#live-wpm { font-weight: bold; margin-right: 8px; }
+#live-wpm-val { font-weight: bold; margin-right: 8px; }
 
-/* â”€â”€ Typing Area â”€â”€ */
+/* â”€â”€ Words Display Area (Fills remaining height) â”€â”€ */
 #words-wrapper {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
   position: relative;
   overflow: hidden;
-  height: 125px;
-  max-height: 135px;
-  margin-bottom: 4px;
+  margin: 6px 0;
   cursor: text;
+  min-height: 160px;
 }
 
 #words-inner {
   position: relative;
-  -webkit-transition: margin-top 0.12s ease-out;
-  transition: margin-top 0.12s ease-out;
-  padding: 2px 0;
+  -webkit-transition: margin-top 0.1s ease-out;
+  transition: margin-top 0.1s ease-out;
+  padding-top: 2px;
 }
 
-/* Words and Characters */
 .word {
   display: inline-block;
-  margin: 0 8px 6px 0;
-  font-size: 20px;
-  line-height: 28px;
+  margin: 0 10px 10px 0;
+  font-size: 21px;
+  line-height: 30px;
   vertical-align: top;
   white-space: nowrap;
 }
 
 .char {
   position: relative;
-  -webkit-transition: color 0.05s ease;
-  transition: color 0.05s ease;
 }
 
-/* Carets */
-#caret {
-  position: absolute;
-  pointer-events: none;
-  z-index: 5;
-  -webkit-transition: left 0.07s ease-out, top 0.07s ease-out;
-  transition: left 0.07s ease-out, top 0.07s ease-out;
+/* â”€â”€ Instant Hardware-Accelerated Carets (0 forced reflows) â”€â”€ */
+.caret-bar .current-char {
+  border-left: 2px solid #e2b714;
+  margin-left: -1px;
+  padding-left: 1px;
+  -webkit-animation: blinkBar 0.9s infinite;
+  animation: blinkBar 0.9s infinite;
 }
 
-.caret-bar {
-  width: 2px;
-  height: 24px;
-  border-radius: 1px;
-  -webkit-animation: caretBlink 0.9s infinite;
-  animation: caretBlink 0.9s infinite;
+.caret-block .current-char {
+  background-color: rgba(226, 183, 20, 0.35);
+  border-radius: 2px;
+  -webkit-animation: blinkBlock 0.9s infinite;
+  animation: blinkBlock 0.9s infinite;
 }
 
-.caret-block {
-  width: 12px;
-  height: 24px;
-  opacity: 0.35;
-  border-radius: 1px;
-  -webkit-animation: caretBlink 0.9s infinite;
-  animation: caretBlink 0.9s infinite;
+.caret-underline .current-char {
+  border-bottom: 2px solid #e2b714;
+  -webkit-animation: blinkBar 0.9s infinite;
+  animation: blinkBar 0.9s infinite;
 }
 
-.caret-underline {
-  width: 12px;
-  height: 2px;
-  margin-top: 22px;
-  -webkit-animation: caretBlink 0.9s infinite;
-  animation: caretBlink 0.9s infinite;
-}
+/* Matrix caret colors */
+body.theme-matrix .caret-bar .current-char { border-color: #00ff66; }
+body.theme-matrix .caret-block .current-char { background-color: rgba(0, 255, 102, 0.35); }
+body.theme-matrix .caret-underline .current-char { border-color: #00ff66; }
 
-@-webkit-keyframes caretBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
-@keyframes caretBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+/* Dracula caret colors */
+body.theme-dracula .caret-bar .current-char { border-color: #bd93f9; }
+body.theme-dracula .caret-block .current-char { background-color: rgba(189, 147, 249, 0.35); }
+body.theme-dracula .caret-underline .current-char { border-color: #bd93f9; }
 
-/* Hidden Input Field */
+/* Paper caret colors */
+body.theme-paper .caret-bar .current-char { border-color: #c62828; }
+body.theme-paper .caret-block .current-char { background-color: rgba(198, 40, 40, 0.35); }
+body.theme-paper .caret-underline .current-char { border-color: #c62828; }
+
+@-webkit-keyframes blinkBar { 0%, 100% { border-color: inherit; } 50% { border-color: transparent; } }
+@keyframes blinkBar { 0%, 100% { border-color: inherit; } 50% { border-color: transparent; } }
+
+@-webkit-keyframes blinkBlock { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes blinkBlock { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* â”€â”€ Hidden Input â”€â”€ */
 #hidden-input {
   position: absolute;
   left: -9999px;
@@ -277,23 +237,6 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   height: 1px;
   border: none;
   outline: none;
-}
-
-/* â”€â”€ Focus Prompt â”€â”€ */
-#focus-overlay {
-  display: none;
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(30, 30, 30, 0.88);
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  font-size: 13px;
-  cursor: pointer;
-  z-index: 20;
 }
 
 /* â”€â”€ Bottom Bar â”€â”€ */
@@ -307,17 +250,44 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  height: 26px;
-  border-top: 1px solid #444444;
+  height: 24px;
+  flex-shrink: 0;
+  border-top: 1px solid #3d3f42;
   padding-top: 2px;
 }
 
-.bottom-text {
+.bot-btn {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  outline: none;
+  padding: 2px 4px;
+}
+.bot-hint {
   font-size: 11px;
 }
 
-/* â”€â”€ Results Screen â”€â”€ */
-#results-screen {
+/* â”€â”€ Focus Prompt â”€â”€ */
+#focus-prompt {
+  display: none;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30, 32, 35, 0.9);
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* â”€â”€ Results View â”€â”€ */
+#results-view {
   display: none;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -333,71 +303,44 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   -webkit-align-items: center;
   align-items: center;
   text-align: center;
-  padding: 4px 0;
 }
 
-#results-grid {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
+#res-wpm-large {
+  font-size: 56px;
+  font-weight: bold;
+  line-height: 1;
+}
+#res-wpm-label {
+  font-size: 13px;
   margin-bottom: 8px;
 }
-
-.res-item {
-  padding: 0 14px;
-}
-
-.res-big {
-  font-size: 48px;
-  font-weight: bold;
-  line-height: 1;
-}
-
-.res-lbl {
-  font-size: 12px;
-  margin-top: 2px;
-}
-
-.res-sub-big {
-  font-size: 28px;
-  font-weight: bold;
-  line-height: 1;
-  margin-top: 12px;
-}
-
-#results-meta {
-  border-radius: 5px;
-  padding: 6px 12px;
-  margin-bottom: 10px;
-  font-size: 11px;
-  width: 95%;
+#res-stats-box {
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  margin-bottom: 14px;
+  width: 90%;
   max-width: 420px;
 }
+#res-stats-box span { font-weight: bold; }
 
-#results-meta span {
-  font-weight: bold;
-}
-
-#action-btn {
+#try-again-btn {
   border: none;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
-  padding: 7px 22px;
-  border-radius: 5px;
+  padding: 8px 24px;
+  border-radius: 6px;
   cursor: pointer;
   outline: none;
 }
 
 /* â”€â”€ Settings Drawer Modal â”€â”€ */
-#settings-drawer {
+#settings-modal {
   display: none;
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(20, 20, 20, 0.94);
+  background: rgba(22, 24, 27, 0.96);
   z-index: 50;
   padding: 10px;
   overflow-y: auto;
@@ -407,7 +350,7 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   flex-direction: column;
 }
 
-#settings-header {
+#settings-top {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -419,10 +362,10 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   align-items: center;
   padding-bottom: 6px;
   border-bottom: 1px solid #444;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-.settings-row {
+.set-row {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -437,7 +380,7 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   font-size: 12px;
 }
 
-.settings-btn-group {
+.set-group {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -449,8 +392,8 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   border: none;
   font-family: inherit;
   font-size: 11px;
-  padding: 4px 8px;
-  margin-left: 3px;
+  padding: 4px 7px;
+  margin-left: 2px;
   border-radius: 3px;
   cursor: pointer;
   outline: none;
@@ -461,156 +404,128 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   color: #111;
   font-weight: bold;
 }
+body.theme-matrix .set-btn.active { background: #00ff66; color: #0d1117; }
+body.theme-dracula .set-btn.active { background: #bd93f9; color: #282a36; }
+body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 </style>
 </head>
 <body class="theme-monkeytype">
 
-<div id="app-container">
+<div id="app-container" class="caret-bar">
   <!-- Header -->
   <div id="header">
     <div id="logo" class="c-main">bb<span class="c-sub">type</span></div>
-    <div id="header-actions">
-      <span id="pb-badge" class="c-sub">PB: <b id="pb-val" class="c-main">0</b></span>
-      <button class="icon-btn c-sub" id="open-settings-btn">âš™ settings</button>
+    <div id="header-menu">
+      <button class="pill-btn c-sub active" data-type="time" data-val="15">15</button>
+      <button class="pill-btn c-sub" data-type="time" data-val="30">30</button>
+      <button class="pill-btn c-sub" data-type="time" data-val="60">60</button>
+      <button class="pill-btn c-sub" data-type="words" data-val="25">words</button>
+      <button class="pill-btn c-sub" id="btn-settings">âš™</button>
     </div>
   </div>
 
-  <!-- Mode Selector Bar -->
-  <div id="mode-bar" class="bg-panel">
-    <button class="mode-btn c-sub" id="btn-mode-time">time</button>
-    <button class="mode-btn c-sub" id="btn-mode-words">words</button>
-    <div class="mode-divider"></div>
-    <span id="sub-mode-pills">
-      <button class="mode-btn c-sub" data-val="15">15</button>
-      <button class="mode-btn c-sub active" data-val="30">30</button>
-      <button class="mode-btn c-sub" data-val="60">60</button>
-    </span>
-    <div class="mode-divider"></div>
-    <button class="mode-btn c-sub" id="btn-toggle-punct">@ punct</button>
-    <button class="mode-btn c-sub" id="btn-toggle-num"># num</button>
-  </div>
-
-  <!-- Live Stats Row -->
+  <!-- Live Stats -->
   <div id="stats-row">
-    <div id="timer-box" class="c-main">30</div>
-    <div id="live-stats" class="c-sub">
-      <span id="live-wpm" class="c-main">0 wpm</span>
-      <span id="live-acc" class="c-text">100%</span>
+    <div id="timer-val" class="c-main">15</div>
+    <div id="live-indicators">
+      <span id="live-wpm-val" class="c-main">0 wpm</span>
+      <span id="live-acc-val" class="c-sub">100%</span>
     </div>
   </div>
 
-  <!-- Words Display Area -->
+  <!-- Words Area (Takes all vertical space) -->
   <div id="words-wrapper">
     <div id="words-inner"></div>
-    <div id="caret" class="caret-bar bg-accent"></div>
-    <div id="focus-overlay" class="c-main">Tap or start typing to focus</div>
+    <div id="focus-prompt" class="c-main">Tap or press any key to focus</div>
   </div>
 
   <!-- Results Screen -->
-  <div id="results-screen">
-    <div id="results-grid">
-      <div class="res-item">
-        <div class="res-big c-main" id="res-wpm">0</div>
-        <div class="res-lbl c-sub">wpm</div>
-      </div>
-      <div class="res-item">
-        <div class="res-sub-big c-text" id="res-acc">0%</div>
-        <div class="res-lbl c-sub">accuracy</div>
-      </div>
-    </div>
-    <div id="results-meta" class="bg-panel c-sub">
+  <div id="results-view">
+    <div id="res-wpm-large" class="c-main">0</div>
+    <div id="res-wpm-label" class="c-sub">words per minute</div>
+    <div id="res-stats-box" class="bg-panel c-sub">
+      acc: <span id="res-acc" class="c-text">100%</span> &nbsp;|&nbsp;
       raw: <span id="res-raw" class="c-text">0</span> &nbsp;|&nbsp;
-      chars: <span id="res-correct" class="c-text">0</span>/<span id="res-incorrect" class="c-err">0</span> &nbsp;|&nbsp;
-      time: <span id="res-time" class="c-text">30s</span>
+      chars: <span id="res-chars" class="c-text">0/0</span>
     </div>
-    <button id="action-btn" class="bg-accent">â†» Next Test (Enter / Tab)</button>
+    <button id="try-again-btn" class="bg-accent">â†» Next Test (Enter / Tab)</button>
   </div>
 
-  <!-- Hidden Input for Keystroke Capture -->
+  <!-- Hidden Input -->
   <input type="text" id="hidden-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
 
   <!-- Bottom Bar -->
   <div id="bottom-bar">
-    <button class="icon-btn c-sub" id="btn-restart">â†» restart</button>
-    <div class="bottom-text c-sub">tab/enter to restart</div>
-    <div class="bottom-text c-sub" id="mode-tag">normal</div>
+    <button class="bot-btn c-sub" id="btn-restart">â†» restart</button>
+    <div class="bot-hint c-sub">tab to restart</div>
+    <div class="bot-hint c-sub" id="pb-tag">PB: 0</div>
   </div>
 
-  <!-- Settings Drawer -->
-  <div id="settings-drawer">
-    <div id="settings-header">
+  <!-- Settings Modal -->
+  <div id="settings-modal">
+    <div id="settings-top">
       <b class="c-main">Settings</b>
-      <button class="icon-btn c-sub" id="close-settings-btn">âœ– Close (Esc)</button>
+      <button class="pill-btn c-sub" id="btn-close-settings">âœ– Close (Esc)</button>
     </div>
 
     <!-- Theme -->
-    <div class="settings-row">
+    <div class="set-row">
       <span class="c-text">Theme</span>
-      <div class="settings-btn-group" id="opt-theme">
-        <button class="set-btn active" data-theme="monkeytype">monkey</button>
-        <button class="set-btn" data-theme="matrix">matrix</button>
-        <button class="set-btn" data-theme="dracula">dracula</button>
-        <button class="set-btn" data-theme="carbon">carbon</button>
-        <button class="set-btn" data-theme="paper">paper</button>
+      <div class="set-group" id="grp-theme">
+        <button class="set-btn active" data-val="monkeytype">monkey</button>
+        <button class="set-btn" data-val="matrix">matrix</button>
+        <button class="set-btn" data-val="dracula">dracula</button>
+        <button class="set-btn" data-val="carbon">carbon</button>
+        <button class="set-btn" data-val="paper">paper</button>
       </div>
     </div>
 
     <!-- Difficulty -->
-    <div class="settings-row">
+    <div class="set-row">
       <span class="c-text">Difficulty</span>
-      <div class="settings-btn-group" id="opt-difficulty">
-        <button class="set-btn active" data-diff="normal">normal</button>
-        <button class="set-btn" data-diff="expert">expert</button>
-        <button class="set-btn" data-diff="master">master</button>
+      <div class="set-group" id="grp-diff">
+        <button class="set-btn active" data-val="normal">normal</button>
+        <button class="set-btn" data-val="expert">expert</button>
+        <button class="set-btn" data-val="master">master</button>
       </div>
     </div>
 
-    <!-- Confidence Mode -->
-    <div class="settings-row">
+    <!-- Confidence -->
+    <div class="set-row">
       <span class="c-text">Confidence</span>
-      <div class="settings-btn-group" id="opt-confidence">
-        <button class="set-btn active" data-conf="off">off</button>
-        <button class="set-btn" data-conf="on">on</button>
-        <button class="set-btn" data-conf="max">max</button>
+      <div class="set-group" id="grp-conf">
+        <button class="set-btn active" data-val="off">off</button>
+        <button class="set-btn" data-val="on">on</button>
+        <button class="set-btn" data-val="max">max</button>
       </div>
     </div>
 
-    <!-- Stop on Error -->
-    <div class="settings-row">
-      <span class="c-text">Stop on Error</span>
-      <div class="settings-btn-group" id="opt-stoperror">
-        <button class="set-btn active" data-stop="off">off</button>
-        <button class="set-btn" data-stop="letter">letter</button>
-        <button class="set-btn" data-stop="word">word</button>
-      </div>
-    </div>
-
-    <!-- Blind Mode -->
-    <div class="settings-row">
-      <span class="c-text">Blind Mode</span>
-      <div class="settings-btn-group" id="opt-blind">
-        <button class="set-btn active" data-blind="off">off</button>
-        <button class="set-btn" data-blind="on">on</button>
+    <!-- Stop on error -->
+    <div class="set-row">
+      <span class="c-text">Stop Error</span>
+      <div class="set-group" id="grp-stop">
+        <button class="set-btn active" data-val="off">off</button>
+        <button class="set-btn" data-val="letter">letter</button>
+        <button class="set-btn" data-val="word">word</button>
       </div>
     </div>
 
     <!-- Caret Style -->
-    <div class="settings-row">
-      <span class="c-text">Caret Style</span>
-      <div class="settings-btn-group" id="opt-caret">
-        <button class="set-btn active" data-caret="bar">bar</button>
-        <button class="set-btn" data-caret="block">block</button>
-        <button class="set-btn" data-caret="underline">underline</button>
+    <div class="set-row">
+      <span class="c-text">Caret</span>
+      <div class="set-group" id="grp-caret">
+        <button class="set-btn active" data-val="bar">bar</button>
+        <button class="set-btn" data-val="block">block</button>
+        <button class="set-btn" data-val="underline">underline</button>
       </div>
     </div>
 
-    <!-- Sound Click -->
-    <div class="settings-row">
-      <span class="c-text">Sound Effects</span>
-      <div class="settings-btn-group" id="opt-sound">
-        <button class="set-btn active" data-snd="off">off</button>
-        <button class="set-btn" data-snd="click">click</button>
-        <button class="set-btn" data-snd="all">click+err</button>
+    <!-- Punctuation / Numbers -->
+    <div class="set-row">
+      <span class="c-text">Modes</span>
+      <div class="set-group">
+        <button class="set-btn" id="set-punct">@ punct</button>
+        <button class="set-btn" id="set-num"># num</button>
       </div>
     </div>
   </div>
@@ -618,8 +533,8 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
 
 <script>
 (function() {
-  /* â”€â”€ 300 English Words List â”€â”€ */
-  var WORDS_POOL = [
+  /* â”€â”€ Word Bank (250 Top English Words) â”€â”€ */
+  var WORDS = [
     'the','be','of','and','a','to','in','he','have','it','that','for',
     'they','with','as','not','on','she','at','by','this','we','you','do',
     'but','from','or','which','one','would','all','will','there','say',
@@ -643,236 +558,136 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
     'name','run','read','door','set','order','eye','plan','air','story',
     'power','grow','best','night','start','stop','add','love','far',
     'idea','often','above','learn','team','does','room','land','body',
-    'car','earth','food','sure','watch','next','left','always','plant',
-    'father','tree','press','north','book','carry','took','science','eat',
-    'friend','began','fish','mountain','base','horse','cut','color','wood',
-    'main','enough','plain','girl','usual','young','ready','ever','red',
-    'list','though','talk','bird','soon','dog','family','direct','pose',
-    'song','measure','state','product','black','short','numeral','class',
-    'wind','question','happen','complete','ship','area','half','rock',
-    'fire','south','problem','piece','told','knew','pass','farm','top',
-    'whole','king','size','heard','hour','better','true','during','hundred',
-    'am','remember','step','west','ground','interest','reach','fast','five',
-    'sing','listen','six','table','travel','less','morning','ten','simple',
-    'several','vowel','toward','lay','against','pattern','slow','center',
-    'person','money','serve','appear','road','map','rain','rule','govern',
-    'pull','cold','notice','voice','fall','town','fine','certain','fly',
-    'unit','lead','cry','dark','machine','note','wait','figure','star',
-    'box','noun','field','rest','correct','able','pound','done'
+    'car','earth','food','sure','watch','next','left','always','book'
   ];
 
-  /* â”€â”€ App Settings State â”€â”€ */
-  var config = {
-    testType: 'time',     // 'time' | 'words'
-    timeVal: 30,          // 15, 30, 60
-    wordsVal: 25,         // 10, 25, 50, 100
+  /* â”€â”€ Configuration â”€â”€ */
+  var cfg = {
+    mode: 'time',     // 'time' | 'words'
+    timeVal: 15,      // 15, 30, 60
+    wordsVal: 25,     // 25, 50, 100
     withPunct: false,
     withNum: false,
     theme: 'monkeytype',
-    difficulty: 'normal', // 'normal' | 'expert' | 'master'
-    confidence: 'off',    // 'off' | 'on' | 'max'
-    stopError: 'off',     // 'off' | 'letter' | 'word'
-    blind: 'off',         // 'off' | 'on'
-    caret: 'bar',         // 'bar' | 'block' | 'underline'
-    sound: 'off'          // 'off' | 'click' | 'all'
+    diff: 'normal',   // 'normal' | 'expert' | 'master'
+    conf: 'off',      // 'off' | 'on' | 'max'
+    stop: 'off',      // 'off' | 'letter' | 'word'
+    caret: 'bar'      // 'bar' | 'block' | 'underline'
   };
 
   /* â”€â”€ Runtime State â”€â”€ */
   var activeWords = [];
   var wordIndex = 0;
-  var charIndex = 0;
-  var typedWordChars = []; // array of strings typed for current word
-  var wordHistory = [];    // array of arrays (typed chars for past words)
-
+  var wordHistory = []; // past typed strings
   var isRunning = false;
   var isFinished = false;
-  var timerInterval = null;
+  var timerId = null;
   var startTime = 0;
-  var timeLeft = 30;
+  var timeLeft = 15;
   var wordsLeft = 25;
 
-  var stats = {
-    correctChars: 0,
-    incorrectChars: 0,
-    rawChars: 0
-  };
+  var correctChars = 0;
+  var incorrectChars = 0;
+  var rawChars = 0;
 
   /* â”€â”€ DOM References â”€â”€ */
-  var bodyEl = document.body;
-  var timerBox = document.getElementById('timer-box');
-  var liveWpm = document.getElementById('live-wpm');
-  var liveAcc = document.getElementById('live-acc');
+  var container = document.getElementById('app-container');
+  var timerVal = document.getElementById('timer-val');
+  var liveWpmVal = document.getElementById('live-wpm-val');
+  var liveAccVal = document.getElementById('live-acc-val');
   var wordsWrapper = document.getElementById('words-wrapper');
   var wordsInner = document.getElementById('words-inner');
-  var caretEl = document.getElementById('caret');
   var hiddenInput = document.getElementById('hidden-input');
-  var focusOverlay = document.getElementById('focus-overlay');
-  var resultsScreen = document.getElementById('results-screen');
-  var resWpm = document.getElementById('res-wpm');
+  var focusPrompt = document.getElementById('focus-prompt');
+  var resultsView = document.getElementById('results-view');
+  var resWpmLarge = document.getElementById('res-wpm-large');
   var resAcc = document.getElementById('res-acc');
   var resRaw = document.getElementById('res-raw');
-  var resCorrect = document.getElementById('res-correct');
-  var resIncorrect = document.getElementById('res-incorrect');
-  var resTime = document.getElementById('res-time');
-  var pbVal = document.getElementById('pb-val');
-  var actionBtn = document.getElementById('action-btn');
+  var resChars = document.getElementById('res-chars');
+  var tryAgainBtn = document.getElementById('try-again-btn');
   var btnRestart = document.getElementById('btn-restart');
-  var modeTag = document.getElementById('mode-tag');
-  var subModePills = document.getElementById('sub-mode-pills');
-  var btnModeTime = document.getElementById('btn-mode-time');
-  var btnModeWords = document.getElementById('btn-mode-words');
-  var btnTogglePunct = document.getElementById('btn-toggle-punct');
-  var btnToggleNum = document.getElementById('btn-toggle-num');
-  var settingsDrawer = document.getElementById('settings-drawer');
-  var openSettingsBtn = document.getElementById('open-settings-btn');
-  var closeSettingsBtn = document.getElementById('close-settings-btn');
+  var pbTag = document.getElementById('pb-tag');
+  var settingsModal = document.getElementById('settings-modal');
+  var btnSettings = document.getElementById('btn-settings');
+  var btnCloseSettings = document.getElementById('btn-close-settings');
+  var setPunct = document.getElementById('set-punct');
+  var setNum = document.getElementById('set-num');
 
-  /* â”€â”€ Sound Synthesizer (Web Audio API) â”€â”€ */
-  var audioCtx = null;
-  function playBeep(isError) {
-    if (config.sound === 'off') return;
-    if (isError && config.sound !== 'all') return;
+  /* â”€â”€ Persistence â”€â”€ */
+  function loadSettings() {
     try {
-      if (!audioCtx) {
-        var AC = window.AudioContext || window.webkitAudioContext;
-        if (AC) audioCtx = new AC();
-      }
-      if (audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      if (!audioCtx) return;
-
-      var osc = audioCtx.createOscillator();
-      var gain = audioCtx.createGain();
-      var now = audioCtx.currentTime;
-
-      if (isError) {
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(160, now);
-        gain.gain.setValueAtTime(0.12, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(now);
-        osc.stop(now + 0.08);
-      } else {
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(500 + Math.random() * 80, now);
-        gain.gain.setValueAtTime(0.06, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(now);
-        osc.stop(now + 0.025);
-      }
-    } catch(e) {}
-  }
-
-  /* â”€â”€ Settings Load / Save â”€â”€ */
-  function loadConfig() {
-    try {
-      var saved = localStorage.getItem('bbtype_cfg');
+      var saved = localStorage.getItem('bbtype_v2_cfg');
       if (saved) {
         var parsed = JSON.parse(saved);
-        for (var k in parsed) { config[k] = parsed[k]; }
+        for (var k in parsed) { cfg[k] = parsed[k]; }
       }
     } catch(e) {}
-    applyConfigUI();
+    applySettingsUI();
   }
 
-  function saveConfig() {
+  function saveSettings() {
     try {
-      localStorage.setItem('bbtype_cfg', JSON.stringify(config));
+      localStorage.setItem('bbtype_v2_cfg', JSON.stringify(cfg));
     } catch(e) {}
   }
 
-  function applyConfigUI() {
-    bodyEl.className = 'theme-' + config.theme;
-    caretEl.className = 'bg-accent caret-' + config.caret;
+  function applySettingsUI() {
+    document.body.className = 'theme-' + cfg.theme;
+    container.className = 'caret-' + cfg.caret;
 
-    // Apply active classes to settings buttons
-    setGroupActive('opt-theme', 'theme', config.theme);
-    setGroupActive('opt-difficulty', 'diff', config.difficulty);
-    setGroupActive('opt-confidence', 'conf', config.confidence);
-    setGroupActive('opt-stoperror', 'stop', config.stopError);
-    setGroupActive('opt-blind', 'blind', config.blind);
-    setGroupActive('opt-caret', 'caret', config.caret);
-    setGroupActive('opt-sound', 'snd', config.sound);
-
-    // Mode bar buttons
-    if (config.testType === 'time') {
-      btnModeTime.className = 'mode-btn c-sub active';
-      btnModeWords.className = 'mode-btn c-sub';
-      renderSubModePills([15, 30, 60], config.timeVal);
-    } else {
-      btnModeTime.className = 'mode-btn c-sub';
-      btnModeWords.className = 'mode-btn c-sub active';
-      renderSubModePills([10, 25, 50, 100], config.wordsVal);
+    // Header pills
+    var headerBtns = document.getElementById('header-menu').getElementsByTagName('button');
+    for (var i = 0; i < headerBtns.length; i++) {
+      var btn = headerBtns[i];
+      var t = btn.getAttribute('data-type');
+      var v = parseInt(btn.getAttribute('data-val'), 10);
+      if (t === cfg.mode && ((t === 'time' && v === cfg.timeVal) || (t === 'words' && v === cfg.wordsVal))) {
+        btn.className = 'pill-btn c-main active';
+      } else if (btn.id !== 'btn-settings') {
+        btn.className = 'pill-btn c-sub';
+      }
     }
 
-    btnTogglePunct.className = 'mode-btn c-sub' + (config.withPunct ? ' active' : '');
-    btnToggleNum.className = 'mode-btn c-sub' + (config.withNum ? ' active' : '');
+    // Settings group buttons
+    syncGroupActive('grp-theme', cfg.theme);
+    syncGroupActive('grp-diff', cfg.diff);
+    syncGroupActive('grp-conf', cfg.conf);
+    syncGroupActive('grp-stop', cfg.stop);
+    syncGroupActive('grp-caret', cfg.caret);
 
-    modeTag.textContent = config.difficulty + (config.blind === 'on' ? ' (blind)' : '');
+    setPunct.className = 'set-btn' + (cfg.withPunct ? ' active' : '');
+    setNum.className = 'set-btn' + (cfg.withNum ? ' active' : '');
+
     loadPB();
   }
 
-  function setGroupActive(containerId, attrName, val) {
-    var cont = document.getElementById(containerId);
-    if (!cont) return;
-    var btns = cont.getElementsByTagName('button');
+  function syncGroupActive(id, val) {
+    var g = document.getElementById(id);
+    if (!g) return;
+    var btns = g.getElementsByTagName('button');
     for (var i = 0; i < btns.length; i++) {
-      if (btns[i].getAttribute('data-' + attrName) === val) {
-        btns[i].className = 'set-btn active';
-      } else {
-        btns[i].className = 'set-btn';
-      }
+      btns[i].className = (btns[i].getAttribute('data-val') === val) ? 'set-btn active' : 'set-btn';
     }
   }
 
-  function renderSubModePills(items, activeVal) {
-    var html = '';
-    for (var i = 0; i < items.length; i++) {
-      var act = (items[i] === activeVal) ? ' active' : '';
-      html += '<button class="mode-btn c-sub' + act + '" data-val="' + items[i] + '">' + items[i] + '</button>';
-    }
-    subModePills.innerHTML = html;
-
-    var pillBtns = subModePills.getElementsByTagName('button');
-    for (var j = 0; j < pillBtns.length; j++) {
-      (function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          var v = parseInt(btn.getAttribute('data-val'), 10);
-          if (config.testType === 'time') config.timeVal = v;
-          else config.wordsVal = v;
-          saveConfig();
-          applyConfigUI();
-          resetTest();
-        });
-      })(pillBtns[j]);
-    }
-  }
-
-  /* â”€â”€ PB Storage â”€â”€ */
   function getPBKey() {
-    return 'bbtype_pb_' + config.testType + '_' + (config.testType === 'time' ? config.timeVal : config.wordsVal);
+    return 'bbtype_pb_' + cfg.mode + '_' + (cfg.mode === 'time' ? cfg.timeVal : cfg.wordsVal);
   }
 
   function loadPB() {
     try {
       var val = localStorage.getItem(getPBKey()) || '0';
-      pbVal.textContent = val;
-    } catch(e) { pbVal.textContent = '0'; }
+      pbTag.textContent = 'PB: ' + val;
+    } catch(e) { pbTag.textContent = 'PB: 0'; }
   }
 
-  function updatePB(wpm) {
+  function savePB(wpm) {
     try {
       var key = getPBKey();
       var cur = parseInt(localStorage.getItem(key) || '0', 10);
       if (wpm > cur) {
         localStorage.setItem(key, wpm);
-        pbVal.textContent = wpm;
+        pbTag.textContent = 'PB: ' + wpm;
       }
     } catch(e) {}
   }
@@ -888,35 +703,34 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
   }
 
   function generateWords(count) {
-    var pool = shuffle(WORDS_POOL);
+    var pool = shuffle(WORDS);
     var list = [];
     var puncs = ['.', ',', '!', '?', ';', '-'];
 
     for (var i = 0; i < count; i++) {
       var w = pool[i % pool.length];
-      if (config.withNum && Math.random() < 0.15) {
+      if (cfg.withNum && Math.random() < 0.15) {
         w = String(Math.floor(Math.random() * 900 + 10));
-      } else if (config.withPunct) {
+      } else if (cfg.withPunct) {
         var r = Math.random();
         if (r < 0.15) w = w.charAt(0).toUpperCase() + w.slice(1);
-        if (r < 0.22) {
-          var p = puncs[Math.floor(Math.random() * puncs.length)];
-          w = w + p;
-        }
+        if (r < 0.22) w = w + puncs[Math.floor(Math.random() * puncs.length)];
       }
       list.push(w);
     }
     return list;
   }
 
-  /* â”€â”€ Ultra-Fast DOM Pre-rendering â”€â”€ */
-  function buildWordsDOM() {
+  /* â”€â”€ DOM Rendering â”€â”€ */
+  function renderWordsDOM() {
     var html = '';
     for (var i = 0; i < activeWords.length; i++) {
       var w = activeWords[i];
       html += '<div class="word" id="w-' + i + '">';
       for (var j = 0; j < w.length; j++) {
-        html += '<span class="char c-sub" id="c-' + i + '-' + j + '">' + escapeHtml(w.charAt(j)) + '</span>';
+        var cls = 'char c-sub';
+        if (i === 0 && j === 0) cls += ' current-char';
+        html += '<span class="' + cls + '">' + escapeHtml(w.charAt(j)) + '</span>';
       }
       html += '</div>';
     }
@@ -927,314 +741,307 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  /* â”€â”€ Dynamic Caret Positioning (0ms Lag) â”€â”€ */
-  function updateCaret() {
+  /* â”€â”€ Ultra-Fast Zero-Lag Input Handler â”€â”€ */
+  function updateWordDisplay() {
     var wordEl = document.getElementById('w-' + wordIndex);
     if (!wordEl) return;
 
-    var leftPos = 0;
-    var topPos = wordEl.offsetTop;
-
-    if (charIndex < activeWords[wordIndex].length) {
-      var charEl = document.getElementById('c-' + wordIndex + '-' + charIndex);
-      if (charEl) {
-        leftPos = charEl.offsetLeft;
-        topPos = charEl.offsetTop;
-      }
-    } else {
-      // At the end of the word or beyond extra chars
-      var lastSpan = wordEl.lastElementChild;
-      if (lastSpan) {
-        leftPos = lastSpan.offsetLeft + lastSpan.offsetWidth;
-        topPos = lastSpan.offsetTop;
-      } else {
-        leftPos = wordEl.offsetLeft;
-      }
-    }
-
-    caretEl.style.left = leftPos + 'px';
-    caretEl.style.top = topPos + 'px';
-
-    // Auto-scroll words container if needed
-    var wrapperH = wordsWrapper.clientHeight;
-    var curMargin = Math.abs(parseInt(wordsInner.style.marginTop, 10) || 0);
-
-    if (topPos > curMargin + wrapperH - 34) {
-      var newMargin = topPos - 4;
-      wordsInner.style.marginTop = '-' + newMargin + 'px';
-    } else if (topPos < curMargin) {
-      wordsInner.style.marginTop = '-' + Math.max(0, topPos - 4) + 'px';
-    }
-  }
-
-  /* â”€â”€ Dynamic Character-by-Character Lighting (Instant Reaction) â”€â”€ */
-  function onKeyPressChar(char) {
-    if (isFinished) return;
-    if (!isRunning) startTest();
-
+    var val = hiddenInput.value;
     var targetWord = activeWords[wordIndex];
+    var spans = wordEl.children;
 
-    // Stop on Error (Letter mode): block if wrong letter
-    if (config.stopError === 'letter' && charIndex < targetWord.length) {
-      if (char !== targetWord.charAt(charIndex)) {
-        playBeep(true);
+    for (var i = 0; i < targetWord.length; i++) {
+      var span = spans[i];
+      if (!span) continue;
+
+      if (i < val.length) {
+        var isMatch = (val.charAt(i) === targetWord.charAt(i));
+        span.className = 'char ' + (isMatch ? 'c-text' : 'c-err');
+      } else if (i === val.length) {
+        span.className = 'char c-sub current-char';
+      } else {
+        span.className = 'char c-sub';
+      }
+    }
+
+    // Extra characters typed past word length
+    var existingExtras = wordEl.getElementsByClassName('extra-char');
+    while (existingExtras.length > 0) {
+      existingExtras[0].parentNode.removeChild(existingExtras[0]);
+    }
+
+    if (val.length > targetWord.length) {
+      for (var k = targetWord.length; k < val.length; k++) {
+        var extra = document.createElement('span');
+        extra.className = 'char c-err extra-char';
+        if (k === val.length - 1) extra.className += ' current-char';
+        extra.textContent = val.charAt(k);
+        wordEl.appendChild(extra);
+      }
+    }
+
+    // Master mode sudden death check
+    if (cfg.diff === 'master') {
+      for (var m = 0; m < val.length; m++) {
+        if (m < targetWord.length && val.charAt(m) !== targetWord.charAt(m)) {
+          failTest('Master: 100% Accuracy Required');
+          return;
+        }
+      }
+    }
+
+    // Stop on error (letter) check
+    if (cfg.stop === 'letter' && val.length > 0) {
+      var lastIdx = val.length - 1;
+      if (lastIdx < targetWord.length && val.charAt(lastIdx) !== targetWord.charAt(lastIdx)) {
+        hiddenInput.value = val.substring(0, lastIdx);
+        updateWordDisplay();
         return;
       }
     }
-
-    var expectedChar = (charIndex < targetWord.length) ? targetWord.charAt(charIndex) : null;
-    var isCorrect = (char === expectedChar);
-
-    // Master Difficulty: Sudden Death on any incorrect character
-    if (config.difficulty === 'master' && !isCorrect) {
-      playBeep(true);
-      failTest('Master Mode: 100% Accuracy Required');
-      return;
-    }
-
-    // Play click sound
-    playBeep(!isCorrect);
-
-    typedWordChars.push(char);
-
-    var wordEl = document.getElementById('w-' + wordIndex);
-
-    if (charIndex < targetWord.length) {
-      // Normal within-word character lighting
-      var span = document.getElementById('c-' + wordIndex + '-' + charIndex);
-      if (span) {
-        if (config.blind === 'on') {
-          span.className = 'char c-text';
-        } else {
-          span.className = 'char ' + (isCorrect ? 'c-text' : 'c-err');
-        }
-      }
-    } else {
-      // Extra characters typed past word length
-      var extraSpan = document.createElement('span');
-      extraSpan.className = 'char ' + (config.blind === 'on' ? 'c-text' : 'c-err') + ' extra-char';
-      extraSpan.textContent = char;
-      wordEl.appendChild(extraSpan);
-    }
-
-    charIndex++;
-    stats.rawChars++;
-    if (isCorrect) stats.correctChars++;
-    else stats.incorrectChars++;
-
-    updateCaret();
-    updateLiveStats();
   }
 
-  function onBackspace() {
-    if (isFinished) return;
-
-    // Confidence max: no backspace allowed
-    if (config.confidence === 'max') return;
-
-    if (charIndex > 0) {
-      // Backspace within the current word
-      charIndex--;
-      var removed = typedWordChars.pop();
-      var targetWord = activeWords[wordIndex];
-      var wordEl = document.getElementById('w-' + wordIndex);
-
-      if (charIndex < targetWord.length) {
-        var span = document.getElementById('c-' + wordIndex + '-' + charIndex);
-        if (span) {
-          span.className = 'char c-sub';
-        }
-      } else {
-        // Remove extra char node
-        var last = wordEl.lastElementChild;
-        if (last && last.className.indexOf('extra-char') !== -1) {
-          wordEl.removeChild(last);
-        }
-      }
-
-      updateCaret();
-      updateLiveStats();
-    } else if (wordIndex > 0 && config.confidence === 'off') {
-      // Jump back to previous word (if confidence mode is off)
-      wordIndex--;
-      typedWordChars = wordHistory.pop() || [];
-      charIndex = typedWordChars.length;
-      updateCaret();
-      updateLiveStats();
-    }
-  }
-
-  function onSpace() {
-    if (isFinished || charIndex === 0) return;
+  function handleSpace() {
+    var val = hiddenInput.value;
+    if (val.length === 0) return;
 
     var targetWord = activeWords[wordIndex];
-    var isWordExact = (typedWordChars.join('') === targetWord);
+    var isExact = (val === targetWord);
 
-    // Stop on Error (Word mode): cannot submit if misspelled
-    if (config.stopError === 'word' && !isWordExact) {
-      playBeep(true);
+    // Stop on error (word)
+    if (cfg.stop === 'word' && !isExact) return;
+
+    // Expert sudden death check
+    if (cfg.diff === 'expert' && !isExact) {
+      failTest('Expert: Word Misspelled');
       return;
     }
 
-    // Expert Difficulty: Sudden Death if submitted word is wrong
-    if (config.difficulty === 'expert' && !isWordExact) {
-      playBeep(true);
-      failTest('Expert Mode: Misspelled Word');
-      return;
+    // Calculate characters
+    var maxLen = Math.max(val.length, targetWord.length);
+    for (var i = 0; i < maxLen; i++) {
+      if (i < val.length && i < targetWord.length) {
+        if (val.charAt(i) === targetWord.charAt(i)) correctChars++;
+        else incorrectChars++;
+      } else {
+        incorrectChars++;
+      }
+      rawChars++;
+    }
+    if (isExact) correctChars++;
+    else incorrectChars++;
+    rawChars++;
+
+    // Clear cursor from finished word
+    var oldWord = document.getElementById('w-' + wordIndex);
+    if (oldWord) {
+      var cur = oldWord.getElementsByClassName('current-char');
+      if (cur.length > 0) cur[0].className = cur[0].className.replace(' current-char', '');
     }
 
-    // Space counts as correct keystroke if word was correct
-    if (isWordExact) stats.correctChars++;
-    else stats.incorrectChars++;
-    stats.rawChars++;
-
-    wordHistory.push(typedWordChars);
+    wordHistory.push(val);
     wordIndex++;
-    charIndex = 0;
-    typedWordChars = [];
+    hiddenInput.value = '';
 
-    // Words mode progress
-    if (config.testType === 'words') {
+    if (cfg.mode === 'words') {
       wordsLeft--;
-      timerBox.textContent = wordsLeft;
+      timerVal.textContent = wordsLeft;
       if (wordsLeft <= 0) {
         finishTest();
         return;
       }
     }
 
-    // Append more words dynamically if nearing buffer end
-    if (wordIndex >= activeWords.length - 12) {
-      appendMoreWords(40);
+    // Activate next word
+    var nextWord = document.getElementById('w-' + wordIndex);
+    if (nextWord && nextWord.children.length > 0) {
+      nextWord.children[0].className += ' current-char';
+      
+      // Auto-scroll words container
+      var wordTop = nextWord.offsetTop;
+      var curMargin = Math.abs(parseInt(wordsInner.style.marginTop, 10) || 0);
+      var wrapperH = wordsWrapper.clientHeight;
+
+      if (wordTop > curMargin + wrapperH - 40) {
+        wordsInner.style.marginTop = '-' + (wordTop - 6) + 'px';
+      }
     }
 
-    updateCaret();
-    updateLiveStats();
+    // Append more words buffer
+    if (wordIndex >= activeWords.length - 15) {
+      appendWords(40);
+    }
   }
 
-  function appendMoreWords(count) {
+  function handleBackspace() {
+    if (cfg.conf === 'max') return;
+
+    if (hiddenInput.value.length === 0 && wordIndex > 0 && cfg.conf === 'off') {
+      // Step back to previous word
+      var curWord = document.getElementById('w-' + wordIndex);
+      if (curWord) {
+        var c = curWord.getElementsByClassName('current-char');
+        if (c.length > 0) c[0].className = c[0].className.replace(' current-char', '');
+      }
+
+      wordIndex--;
+      var restored = wordHistory.pop() || '';
+      hiddenInput.value = restored;
+
+      // Reset previous word's contribution from stats
+      var targetWord = activeWords[wordIndex];
+      var maxLen = Math.max(restored.length, targetWord.length);
+      for (var i = 0; i < maxLen; i++) {
+        if (i < restored.length && i < targetWord.length) {
+          if (restored.charAt(i) === targetWord.charAt(i)) correctChars = Math.max(0, correctChars - 1);
+          else incorrectChars = Math.max(0, incorrectChars - 1);
+        } else {
+          incorrectChars = Math.max(0, incorrectChars - 1);
+        }
+        rawChars = Math.max(0, rawChars - 1);
+      }
+      if (restored === targetWord) correctChars = Math.max(0, correctChars - 1);
+      else incorrectChars = Math.max(0, incorrectChars - 1);
+      rawChars = Math.max(0, rawChars - 1);
+
+      updateWordDisplay();
+    }
+  }
+
+  function appendWords(count) {
     var more = generateWords(count);
-    var startIdx = activeWords.length;
+    var start = activeWords.length;
     for (var i = 0; i < more.length; i++) {
       activeWords.push(more[i]);
       var div = document.createElement('div');
       div.className = 'word';
-      div.id = 'w-' + (startIdx + i);
+      div.id = 'w-' + (start + i);
       for (var j = 0; j < more[i].length; j++) {
-        div.innerHTML += '<span class="char c-sub" id="c-' + (startIdx + i) + '-' + j + '">' + escapeHtml(more[i].charAt(j)) + '</span>';
+        div.innerHTML += '<span class="char c-sub">' + escapeHtml(more[i].charAt(j)) + '</span>';
       }
       wordsInner.appendChild(div);
     }
   }
 
-  /* â”€â”€ Live Stats & Timers â”€â”€ */
+  /* â”€â”€ Test Timers & Stats â”€â”€ */
   function startTest() {
     isRunning = true;
     startTime = Date.now();
 
-    if (config.testType === 'time') {
-      timerInterval = setInterval(function() {
+    timerId = setInterval(function() {
+      if (cfg.mode === 'time') {
         timeLeft--;
-        timerBox.textContent = timeLeft;
-        updateLiveStats();
+        timerVal.textContent = timeLeft;
         if (timeLeft <= 0) finishTest();
-      }, 1000);
-    } else {
-      timerInterval = setInterval(function() {
-        updateLiveStats();
-      }, 500);
-    }
+      }
+      updateLiveStats();
+    }, 1000);
   }
 
   function updateLiveStats() {
-    var elapsedSec = (Date.now() - startTime) / 1000;
-    if (elapsedSec < 0.2) return;
+    var elapsed = (Date.now() - startTime) / 1000;
+    if (elapsed < 0.3) return;
 
-    var wpm = Math.round((stats.correctChars / 5) / (elapsedSec / 60));
+    var curCorrect = correctChars;
+    var curIncorrect = incorrectChars;
+    var val = hiddenInput.value;
+    var target = activeWords[wordIndex] || '';
+
+    for (var i = 0; i < val.length; i++) {
+      if (i < target.length && val.charAt(i) === target.charAt(i)) curCorrect++;
+      else curIncorrect++;
+    }
+
+    var wpm = Math.round((curCorrect / 5) / (elapsed / 60));
     if (isNaN(wpm) || wpm < 0) wpm = 0;
 
-    var total = stats.correctChars + stats.incorrectChars;
-    var acc = total > 0 ? Math.round((stats.correctChars / total) * 100) : 100;
+    var total = curCorrect + curIncorrect;
+    var acc = total > 0 ? Math.round((curCorrect / total) * 100) : 100;
 
-    liveWpm.textContent = wpm + ' wpm';
-    liveAcc.textContent = acc + '%';
+    liveWpmVal.textContent = wpm + ' wpm';
+    liveAccVal.textContent = acc + '%';
   }
 
   function failTest(reason) {
-    clearInterval(timerInterval);
+    clearInterval(timerId);
     isRunning = false;
     isFinished = true;
     hiddenInput.disabled = true;
 
-    resWpm.textContent = '0';
+    resWpmLarge.textContent = '0';
+    resWpmLarge.className = 'c-err';
     resAcc.textContent = 'FAILED';
     resRaw.textContent = '0';
-    resCorrect.textContent = stats.correctChars;
-    resIncorrect.textContent = stats.incorrectChars;
-    resTime.textContent = reason;
+    resChars.textContent = reason;
 
     showResults();
   }
 
   function finishTest() {
-    clearInterval(timerInterval);
+    clearInterval(timerId);
     isRunning = false;
     isFinished = true;
     hiddenInput.disabled = true;
 
-    var elapsedSec = (Date.now() - startTime) / 1000;
-    if (config.testType === 'time') elapsedSec = config.timeVal;
-    if (elapsedSec <= 0) elapsedSec = 1;
+    var elapsed = (Date.now() - startTime) / 1000;
+    if (cfg.mode === 'time') elapsed = cfg.timeVal;
+    if (elapsed <= 0) elapsed = 1;
 
-    var netWpm = Math.round((stats.correctChars / 5) / (elapsedSec / 60));
-    var rawWpm = Math.round((stats.rawChars / 5) / (elapsedSec / 60));
-    var total = stats.correctChars + stats.incorrectChars;
-    var acc = total > 0 ? Math.round((stats.correctChars / total) * 100) : 0;
+    // Flush last word characters
+    var val = hiddenInput.value;
+    var target = activeWords[wordIndex] || '';
+    for (var i = 0; i < val.length; i++) {
+      if (i < target.length && val.charAt(i) === target.charAt(i)) correctChars++;
+      else incorrectChars++;
+      rawChars++;
+    }
+
+    var netWpm = Math.round((correctChars / 5) / (elapsed / 60));
+    var rawWpm = Math.round((rawChars / 5) / (elapsed / 60));
+    var total = correctChars + incorrectChars;
+    var acc = total > 0 ? Math.round((correctChars / total) * 100) : 0;
 
     if (netWpm < 0) netWpm = 0;
     if (rawWpm < 0) rawWpm = 0;
 
-    resWpm.textContent = netWpm;
+    resWpmLarge.textContent = netWpm;
+    resWpmLarge.className = 'c-main';
     resAcc.textContent = acc + '%';
     resRaw.textContent = rawWpm;
-    resCorrect.textContent = stats.correctChars;
-    resIncorrect.textContent = stats.incorrectChars;
-    resTime.textContent = Math.round(elapsedSec) + 's';
+    resChars.textContent = correctChars + '/' + incorrectChars;
 
-    updatePB(netWpm);
+    savePB(netWpm);
     showResults();
   }
 
   function showResults() {
     wordsWrapper.style.display = 'none';
     document.getElementById('stats-row').style.display = 'none';
-    resultsScreen.style.display = '-webkit-flex';
-    resultsScreen.style.display = 'flex';
+    resultsView.style.display = '-webkit-flex';
+    resultsView.style.display = 'flex';
   }
 
   function resetTest() {
-    clearInterval(timerInterval);
+    clearInterval(timerId);
     isRunning = false;
     isFinished = false;
     wordIndex = 0;
-    charIndex = 0;
-    typedWordChars = [];
     wordHistory = [];
 
-    stats.correctChars = 0;
-    stats.incorrectChars = 0;
-    stats.rawChars = 0;
+    correctChars = 0;
+    incorrectChars = 0;
+    rawChars = 0;
 
-    if (config.testType === 'time') {
-      timeLeft = config.timeVal;
-      timerBox.textContent = config.timeVal;
+    if (cfg.mode === 'time') {
+      timeLeft = cfg.timeVal;
+      timerVal.textContent = cfg.timeVal;
     } else {
-      wordsLeft = config.wordsVal;
-      timerBox.textContent = config.wordsVal;
+      wordsLeft = cfg.wordsVal;
+      timerVal.textContent = cfg.wordsVal;
     }
 
-    liveWpm.textContent = '0 wpm';
-    liveAcc.textContent = '100%';
+    liveWpmVal.textContent = '0 wpm';
+    liveAccVal.textContent = '100%';
     hiddenInput.value = '';
     hiddenInput.disabled = false;
     wordsInner.style.marginTop = '0px';
@@ -1242,34 +1049,37 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
     wordsWrapper.style.display = 'block';
     document.getElementById('stats-row').style.display = '-webkit-flex';
     document.getElementById('stats-row').style.display = 'flex';
-    resultsScreen.style.display = 'none';
-    focusOverlay.style.display = 'none';
+    resultsView.style.display = 'none';
+    focusPrompt.style.display = 'none';
 
-    var totalInitialWords = (config.testType === 'words') ? Math.max(config.wordsVal, 30) : 70;
-    activeWords = generateWords(totalInitialWords);
-    buildWordsDOM();
-    updateCaret();
+    var initCount = (cfg.mode === 'words') ? Math.max(cfg.wordsVal, 30) : 80;
+    activeWords = generateWords(initCount);
+    renderWordsDOM();
 
-    setTimeout(function() {
-      hiddenInput.focus();
-    }, 40);
+    setTimeout(function() { hiddenInput.focus(); }, 30);
   }
 
-  /* â”€â”€ Keystroke Event Dispatcher â”€â”€ */
+  /* â”€â”€ Event Listeners â”€â”€ */
+  hiddenInput.addEventListener('input', function() {
+    if (isFinished) return;
+    if (!isRunning && hiddenInput.value.length > 0) startTest();
+    updateWordDisplay();
+  });
+
   hiddenInput.addEventListener('keydown', function(e) {
     var code = e.keyCode || e.which;
 
-    // Tab (9) or Escape (27) -> Restart
-    if (code === 9) {
+    if (code === 9) { // Tab -> restart
       e.preventDefault();
       resetTest();
       return;
     }
 
-    if (code === 27) {
+    if (code === 27) { // Escape -> close modal or restart
       e.preventDefault();
-      if (settingsDrawer.style.display === 'flex' || settingsDrawer.style.display === '-webkit-flex') {
-        closeSettings();
+      if (settingsModal.style.display === 'flex' || settingsModal.style.display === '-webkit-flex') {
+        settingsModal.style.display = 'none';
+        hiddenInput.focus();
       } else {
         resetTest();
       }
@@ -1277,53 +1087,34 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
     }
 
     if (isFinished) {
-      if (code === 13 || code === 32) { // Enter or Space on results
+      if (code === 13 || code === 32) {
         e.preventDefault();
         resetTest();
       }
       return;
     }
 
-    // Space (32)
-    if (code === 32) {
+    if (code === 32) { // Space
       e.preventDefault();
-      onSpace();
+      handleSpace();
       return;
     }
 
-    // Backspace (8)
-    if (code === 8) {
-      e.preventDefault();
-      onBackspace();
+    if (code === 8) { // Backspace
+      if (hiddenInput.value.length === 0) {
+        e.preventDefault();
+        handleBackspace();
+      }
       return;
     }
 
-    // Enter (13) -> Restart test
-    if (code === 13) {
+    if (code === 13) { // Enter -> restart
       e.preventDefault();
       resetTest();
       return;
     }
   });
 
-  // Direct character capture via input event (handles physical keyboard + Android runtime)
-  hiddenInput.addEventListener('input', function(e) {
-    if (isFinished) return;
-    var val = hiddenInput.value;
-    if (!val || val.length === 0) return;
-
-    for (var i = 0; i < val.length; i++) {
-      var c = val.charAt(i);
-      if (c === ' ') {
-        onSpace();
-      } else {
-        onKeyPressChar(c);
-      }
-    }
-    hiddenInput.value = '';
-  });
-
-  // Global window fallback for physical keyboard
   window.addEventListener('keydown', function(e) {
     var code = e.keyCode || e.which;
     if (code === 9) {
@@ -1336,101 +1127,90 @@ body.theme-paper .bg-accent { background-color: #d32f2f; color: #ffffff; }
     }
   });
 
-  /* â”€â”€ Focus Management â”€â”€ */
-  hiddenInput.addEventListener('focus', function() {
-    focusOverlay.style.display = 'none';
-  });
-
+  /* Focus handling */
+  hiddenInput.addEventListener('focus', function() { focusPrompt.style.display = 'none'; });
   hiddenInput.addEventListener('blur', function() {
-    if (!isFinished && settingsDrawer.style.display !== 'flex' && settingsDrawer.style.display !== '-webkit-flex') {
-      focusOverlay.style.display = '-webkit-flex';
-      focusOverlay.style.display = 'flex';
+    if (!isFinished && settingsModal.style.display !== 'flex' && settingsModal.style.display !== '-webkit-flex') {
+      focusPrompt.style.display = '-webkit-flex';
+      focusPrompt.style.display = 'flex';
     }
   });
-
   wordsWrapper.addEventListener('click', function() { hiddenInput.focus(); });
-  focusOverlay.addEventListener('click', function() { hiddenInput.focus(); });
+  focusPrompt.addEventListener('click', function() { hiddenInput.focus(); });
 
-  /* â”€â”€ Mode Switching Buttons â”€â”€ */
-  btnModeTime.addEventListener('click', function() {
-    config.testType = 'time';
-    saveConfig();
-    applyConfigUI();
-    resetTest();
-  });
+  /* Header quick modes */
+  var headerBtns = document.getElementById('header-menu').getElementsByTagName('button');
+  for (var h = 0; h < headerBtns.length; h++) {
+    (function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var t = btn.getAttribute('data-type');
+        if (!t) return;
+        cfg.mode = t;
+        if (t === 'time') cfg.timeVal = parseInt(btn.getAttribute('data-val'), 10);
+        else cfg.wordsVal = parseInt(btn.getAttribute('data-val'), 10);
+        saveSettings();
+        applySettingsUI();
+        resetTest();
+      });
+    })(headerBtns[h]);
+  }
 
-  btnModeWords.addEventListener('click', function() {
-    config.testType = 'words';
-    saveConfig();
-    applyConfigUI();
-    resetTest();
-  });
-
-  btnTogglePunct.addEventListener('click', function() {
-    config.withPunct = !config.withPunct;
-    saveConfig();
-    applyConfigUI();
-    resetTest();
-  });
-
-  btnToggleNum.addEventListener('click', function() {
-    config.withNum = !config.withNum;
-    saveConfig();
-    applyConfigUI();
-    resetTest();
-  });
-
+  /* Restart buttons */
   btnRestart.addEventListener('click', function() { resetTest(); });
-  actionBtn.addEventListener('click', function() { resetTest(); });
+  tryAgainBtn.addEventListener('click', function() { resetTest(); });
 
-  /* â”€â”€ Settings Drawer Management â”€â”€ */
-  function openSettings() {
-    settingsDrawer.style.display = '-webkit-flex';
-    settingsDrawer.style.display = 'flex';
-  }
+  /* Settings modal */
+  btnSettings.addEventListener('click', function(e) {
+    e.stopPropagation();
+    settingsModal.style.display = '-webkit-flex';
+    settingsModal.style.display = 'flex';
+  });
 
-  function closeSettings() {
-    settingsDrawer.style.display = 'none';
+  btnCloseSettings.addEventListener('click', function(e) {
+    e.stopPropagation();
+    settingsModal.style.display = 'none';
     hiddenInput.focus();
-  }
-
-  openSettingsBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    openSettings();
   });
 
-  closeSettingsBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    closeSettings();
-  });
-
-  // Settings option clicks
-  function setupSettingGroup(groupId, configKey, attrName) {
-    var grp = document.getElementById(groupId);
-    if (!grp) return;
-    var btns = grp.getElementsByTagName('button');
+  function bindSettingGroup(id, prop) {
+    var g = document.getElementById(id);
+    if (!g) return;
+    var btns = g.getElementsByTagName('button');
     for (var i = 0; i < btns.length; i++) {
       (function(btn) {
         btn.addEventListener('click', function() {
-          config[configKey] = btn.getAttribute('data-' + attrName);
-          saveConfig();
-          applyConfigUI();
+          cfg[prop] = btn.getAttribute('data-val');
+          saveSettings();
+          applySettingsUI();
           resetTest();
         });
       })(btns[i]);
     }
   }
 
-  setupSettingGroup('opt-theme', 'theme', 'theme');
-  setupSettingGroup('opt-difficulty', 'difficulty', 'diff');
-  setupSettingGroup('opt-confidence', 'confidence', 'conf');
-  setupSettingGroup('opt-stoperror', 'stopError', 'stop');
-  setupSettingGroup('opt-blind', 'blind', 'blind');
-  setupSettingGroup('opt-caret', 'caret', 'caret');
-  setupSettingGroup('opt-sound', 'sound', 'snd');
+  bindSettingGroup('grp-theme', 'theme');
+  bindSettingGroup('grp-diff', 'diff');
+  bindSettingGroup('grp-conf', 'conf');
+  bindSettingGroup('grp-stop', 'stop');
+  bindSettingGroup('grp-caret', 'caret');
+
+  setPunct.addEventListener('click', function() {
+    cfg.withPunct = !cfg.withPunct;
+    saveSettings();
+    applySettingsUI();
+    resetTest();
+  });
+
+  setNum.addEventListener('click', function() {
+    cfg.withNum = !cfg.withNum;
+    saveSettings();
+    applySettingsUI();
+    resetTest();
+  });
 
   /* â”€â”€ Init â”€â”€ */
-  loadConfig();
+  loadSettings();
   resetTest();
 })();
 </script>
