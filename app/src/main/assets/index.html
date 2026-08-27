@@ -22,7 +22,7 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* â”€â”€ Themes â”€â”€ */
+/* â”€â”€ Theme Definitions â”€â”€ */
 body.theme-monkeytype { background-color: #323437; color: #d1d0c5; }
 body.theme-monkeytype .c-main { color: #e2b714; }
 body.theme-monkeytype .c-sub { color: #646669; }
@@ -63,7 +63,7 @@ body.theme-paper .c-err { color: #b71c1c; }
 body.theme-paper .bg-panel { background-color: #e0e0e0; }
 body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
 
-/* â”€â”€ Full Height App Container (fills 720x720 screen) â”€â”€ */
+/* â”€â”€ App Container â”€â”€ */
 #app-container {
   display: -webkit-box;
   display: -webkit-flex;
@@ -74,11 +74,11 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   flex-direction: column;
   height: 100%;
   width: 100%;
-  padding: 8px 12px 6px;
+  padding: 6px 10px 4px;
   position: relative;
 }
 
-/* â”€â”€ Header: Single non-wrapping compact line â”€â”€ */
+/* â”€â”€ Top Bar â”€â”€ */
 #header {
   display: -webkit-box;
   display: -webkit-flex;
@@ -89,7 +89,7 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  height: 28px;
+  height: 26px;
   flex-shrink: 0;
 }
 
@@ -114,7 +114,7 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   border: none;
   font-family: inherit;
   font-size: 12px;
-  padding: 3px 6px;
+  padding: 2px 6px;
   margin-left: 2px;
   cursor: pointer;
   border-radius: 3px;
@@ -124,7 +124,7 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   font-weight: bold;
 }
 
-/* â”€â”€ Live Stats Row â”€â”€ */
+/* â”€â”€ Live Stats Bar â”€â”€ */
 #stats-row {
   display: -webkit-box;
   display: -webkit-flex;
@@ -135,33 +135,32 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   -webkit-box-align: baseline;
   -webkit-align-items: baseline;
   align-items: baseline;
-  height: 36px;
-  margin-top: 4px;
+  height: 32px;
+  margin-top: 2px;
   flex-shrink: 0;
 }
 
 #timer-val {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
   line-height: 1;
 }
 
 #live-indicators {
-  font-size: 14px;
+  font-size: 13px;
   text-align: right;
 }
 #live-wpm-val { font-weight: bold; margin-right: 8px; }
 
-/* â”€â”€ Words Display Area (Fills remaining height) â”€â”€ */
+/* â”€â”€ Typing Area â”€â”€ */
 #words-wrapper {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
   position: relative;
   overflow: hidden;
-  margin: 6px 0;
+  margin: 4px 0;
   cursor: text;
-  min-height: 160px;
 }
 
 #words-inner {
@@ -184,7 +183,7 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   position: relative;
 }
 
-/* â”€â”€ Instant Hardware-Accelerated Carets (0 forced reflows) â”€â”€ */
+/* Caret styles (0 forced reflows) */
 .caret-bar .current-char {
   border-left: 2px solid #e2b714;
   margin-left: -1px;
@@ -206,17 +205,14 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   animation: blinkBar 0.9s infinite;
 }
 
-/* Matrix caret colors */
 body.theme-matrix .caret-bar .current-char { border-color: #00ff66; }
 body.theme-matrix .caret-block .current-char { background-color: rgba(0, 255, 102, 0.35); }
 body.theme-matrix .caret-underline .current-char { border-color: #00ff66; }
 
-/* Dracula caret colors */
 body.theme-dracula .caret-bar .current-char { border-color: #bd93f9; }
 body.theme-dracula .caret-block .current-char { background-color: rgba(189, 147, 249, 0.35); }
 body.theme-dracula .caret-underline .current-char { border-color: #bd93f9; }
 
-/* Paper caret colors */
 body.theme-paper .caret-bar .current-char { border-color: #c62828; }
 body.theme-paper .caret-block .current-char { background-color: rgba(198, 40, 40, 0.35); }
 body.theme-paper .caret-underline .current-char { border-color: #c62828; }
@@ -250,7 +246,7 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  height: 24px;
+  height: 22px;
   flex-shrink: 0;
   border-top: 1px solid #3d3f42;
   padding-top: 2px;
@@ -263,7 +259,7 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   font-size: 11px;
   cursor: pointer;
   outline: none;
-  padding: 2px 4px;
+  padding: 1px 3px;
 }
 .bot-hint {
   font-size: 11px;
@@ -281,12 +277,12 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   z-index: 10;
 }
 
-/* â”€â”€ Results View â”€â”€ */
+/* â”€â”€ FULL MONKEYTYPE RESULTS SCREEN â”€â”€ */
 #results-view {
   display: none;
   -webkit-box-flex: 1;
@@ -296,46 +292,146 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 2px 0;
+  overflow-y: auto;
+}
+
+/* Top Row: WPM / ACC / Info */
+#res-top-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: flex-start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.res-hero-stat {
+  margin-right: 14px;
+}
+
+.res-hero-lbl {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.res-hero-val {
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+#res-meta-info {
+  margin-left: auto;
+  text-align: right;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+/* Canvas Graph */
+#res-chart-container {
+  width: 100%;
+  height: 95px;
+  position: relative;
+  margin: 2px 0;
+}
+
+#res-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Bottom 4-Column Stats Row */
+#res-bottom-grid {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  width: 100%;
+  margin: 4px 0 6px;
+  border-top: 1px solid #3d3f42;
+  padding-top: 4px;
+}
+
+.res-sub-col {
+  text-align: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+.res-sub-lbl {
+  font-size: 10px;
+  margin-bottom: 1px;
+}
+
+.res-sub-val {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Action Icons Toolbar */
+#res-actions-bar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  text-align: center;
+  margin-bottom: 2px;
 }
 
-#res-wpm-large {
-  font-size: 56px;
-  font-weight: bold;
-  line-height: 1;
-}
-#res-wpm-label {
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-#res-stats-box {
-  border-radius: 6px;
-  padding: 8px 16px;
-  font-size: 13px;
-  margin-bottom: 14px;
-  width: 90%;
-  max-width: 420px;
-}
-#res-stats-box span { font-weight: bold; }
-
-#try-again-btn {
+.res-btn {
+  background: none;
   border: none;
   font-family: inherit;
   font-size: 15px;
-  font-weight: bold;
-  padding: 8px 24px;
-  border-radius: 6px;
+  padding: 3px 12px;
+  margin: 0 4px;
   cursor: pointer;
+  border-radius: 4px;
   outline: none;
 }
+.res-btn:hover, .res-btn:active {
+  background-color: rgba(255,255,255,0.08);
+}
 
-/* â”€â”€ Settings Drawer Modal â”€â”€ */
+/* Words History Container */
+#words-history-panel {
+  display: none;
+  background: rgba(0,0,0,0.25);
+  border-radius: 4px;
+  padding: 6px;
+  font-size: 12px;
+  line-height: 18px;
+  max-height: 80px;
+  overflow-y: auto;
+  margin-top: 4px;
+  text-align: left;
+}
+
+.hist-word {
+  display: inline-block;
+  margin-right: 6px;
+}
+.hist-word.correct { color: #d1d0c5; }
+.hist-word.incorrect { color: #ca4754; text-decoration: line-through; }
+
+/* â”€â”€ Settings Modal â”€â”€ */
 #settings-modal {
   display: none;
   position: absolute;
@@ -375,9 +471,9 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  padding: 6px 0;
+  padding: 5px 0;
   border-bottom: 1px solid #2f2f2f;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .set-group {
@@ -391,8 +487,8 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   color: #888;
   border: none;
   font-family: inherit;
-  font-size: 11px;
-  padding: 4px 7px;
+  font-size: 10px;
+  padding: 3px 6px;
   margin-left: 2px;
   border-radius: 3px;
   cursor: pointer;
@@ -433,25 +529,68 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     </div>
   </div>
 
-  <!-- Words Area (Takes all vertical space) -->
+  <!-- Words Area (Takes full vertical space during typing) -->
   <div id="words-wrapper">
     <div id="words-inner"></div>
     <div id="focus-prompt" class="c-main">Tap or press any key to focus</div>
   </div>
 
-  <!-- Results Screen -->
+  <!-- â”€â”€ FULL MONKEYTYPE RESULTS SCREEN â”€â”€ -->
   <div id="results-view">
-    <div id="res-wpm-large" class="c-main">0</div>
-    <div id="res-wpm-label" class="c-sub">words per minute</div>
-    <div id="res-stats-box" class="bg-panel c-sub">
-      acc: <span id="res-acc" class="c-text">100%</span> &nbsp;|&nbsp;
-      raw: <span id="res-raw" class="c-text">0</span> &nbsp;|&nbsp;
-      chars: <span id="res-chars" class="c-text">0/0</span>
+    <!-- Top Row: WPM / Acc / Test Info -->
+    <div id="res-top-row">
+      <div class="res-hero-stat">
+        <div class="res-hero-lbl c-sub">wpm</div>
+        <div class="res-hero-val c-main" id="res-wpm-num">104</div>
+      </div>
+      <div class="res-hero-stat">
+        <div class="res-hero-lbl c-sub">acc</div>
+        <div class="res-hero-val c-text" id="res-acc-num">95%</div>
+      </div>
+      <div id="res-meta-info" class="c-sub">
+        <div>test type</div>
+        <div class="c-text" id="res-test-type" style="font-weight:bold;">time 30</div>
+        <div>english</div>
+      </div>
     </div>
-    <button id="try-again-btn" class="bg-accent">â†» Next Test (Enter / Tab)</button>
+
+    <!-- Chart Canvas -->
+    <div id="res-chart-container">
+      <canvas id="res-canvas"></canvas>
+    </div>
+
+    <!-- Bottom 4 Columns Stats -->
+    <div id="res-bottom-grid">
+      <div class="res-sub-col">
+        <div class="res-sub-lbl c-sub">raw</div>
+        <div class="res-sub-val c-text" id="res-raw-num">110</div>
+      </div>
+      <div class="res-sub-col">
+        <div class="res-sub-lbl c-sub">characters</div>
+        <div class="res-sub-val c-text" id="res-chars-num">260/7/0/2</div>
+      </div>
+      <div class="res-sub-col">
+        <div class="res-sub-lbl c-sub">consistency</div>
+        <div class="res-sub-val c-text" id="res-cons-num">79%</div>
+      </div>
+      <div class="res-sub-col">
+        <div class="res-sub-lbl c-sub">time</div>
+        <div class="res-sub-val c-text" id="res-time-num">30s</div>
+      </div>
+    </div>
+
+    <!-- Actions Toolbar -->
+    <div id="res-actions-bar">
+      <button class="res-btn c-sub" id="btn-res-next" title="Next Test">â–¶</button>
+      <button class="res-btn c-sub" id="btn-res-repeat" title="Repeat Test">â†»</button>
+      <button class="res-btn c-sub" id="btn-res-words" title="Words History">â˜°</button>
+    </div>
+
+    <!-- Words History Panel (Collapsible) -->
+    <div id="words-history-panel" class="c-sub"></div>
   </div>
 
-  <!-- Hidden Input -->
+  <!-- Hidden Input for Keystroke Capture -->
   <input type="text" id="hidden-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
 
   <!-- Bottom Bar -->
@@ -468,7 +607,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       <button class="pill-btn c-sub" id="btn-close-settings">âœ– Close (Esc)</button>
     </div>
 
-    <!-- Theme -->
     <div class="set-row">
       <span class="c-text">Theme</span>
       <div class="set-group" id="grp-theme">
@@ -480,7 +618,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
-    <!-- Difficulty -->
     <div class="set-row">
       <span class="c-text">Difficulty</span>
       <div class="set-group" id="grp-diff">
@@ -490,7 +627,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
-    <!-- Confidence -->
     <div class="set-row">
       <span class="c-text">Confidence</span>
       <div class="set-group" id="grp-conf">
@@ -500,7 +636,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
-    <!-- Stop on error -->
     <div class="set-row">
       <span class="c-text">Stop Error</span>
       <div class="set-group" id="grp-stop">
@@ -510,7 +645,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
-    <!-- Caret Style -->
     <div class="set-row">
       <span class="c-text">Caret</span>
       <div class="set-group" id="grp-caret">
@@ -520,7 +654,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       </div>
     </div>
 
-    <!-- Punctuation / Numbers -->
     <div class="set-row">
       <span class="c-text">Modes</span>
       <div class="set-group">
@@ -533,7 +666,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
 <script>
 (function() {
-  /* â”€â”€ Word Bank (250 Top English Words) â”€â”€ */
+  /* â”€â”€ 250 Top English Words â”€â”€ */
   var WORDS = [
     'the','be','of','and','a','to','in','he','have','it','that','for',
     'they','with','as','not','on','she','at','by','this','we','you','do',
@@ -588,7 +721,13 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
   var correctChars = 0;
   var incorrectChars = 0;
+  var extraChars = 0;
+  var missedChars = 0;
   var rawChars = 0;
+
+  // Chart data timeline: array of { second, wpm, raw, errors }
+  var chartData = [];
+  var errorsThisSecond = 0;
 
   /* â”€â”€ DOM References â”€â”€ */
   var container = document.getElementById('app-container');
@@ -599,12 +738,23 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
   var wordsInner = document.getElementById('words-inner');
   var hiddenInput = document.getElementById('hidden-input');
   var focusPrompt = document.getElementById('focus-prompt');
+
+  // Results DOM
   var resultsView = document.getElementById('results-view');
-  var resWpmLarge = document.getElementById('res-wpm-large');
-  var resAcc = document.getElementById('res-acc');
-  var resRaw = document.getElementById('res-raw');
-  var resChars = document.getElementById('res-chars');
-  var tryAgainBtn = document.getElementById('try-again-btn');
+  var resWpmNum = document.getElementById('res-wpm-num');
+  var resAccNum = document.getElementById('res-acc-num');
+  var resTestType = document.getElementById('res-test-type');
+  var resRawNum = document.getElementById('res-raw-num');
+  var resCharsNum = document.getElementById('res-chars-num');
+  var resConsNum = document.getElementById('res-cons-num');
+  var resTimeNum = document.getElementById('res-time-num');
+  var resCanvas = document.getElementById('res-canvas');
+  var wordsHistoryPanel = document.getElementById('words-history-panel');
+
+  var btnResNext = document.getElementById('btn-res-next');
+  var btnResRepeat = document.getElementById('btn-res-repeat');
+  var btnResWords = document.getElementById('btn-res-words');
+
   var btnRestart = document.getElementById('btn-restart');
   var pbTag = document.getElementById('pb-tag');
   var settingsModal = document.getElementById('settings-modal');
@@ -721,7 +871,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     return list;
   }
 
-  /* â”€â”€ DOM Rendering â”€â”€ */
+  /* â”€â”€ Pre-render Words DOM â”€â”€ */
   function renderWordsDOM() {
     var html = '';
     for (var i = 0; i < activeWords.length; i++) {
@@ -741,7 +891,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  /* â”€â”€ Ultra-Fast Zero-Lag Input Handler â”€â”€ */
+  /* â”€â”€ Fast Input Handling â”€â”€ */
   function updateWordDisplay() {
     var wordEl = document.getElementById('w-' + wordIndex);
     if (!wordEl) return;
@@ -757,6 +907,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       if (i < val.length) {
         var isMatch = (val.charAt(i) === targetWord.charAt(i));
         span.className = 'char ' + (isMatch ? 'c-text' : 'c-err');
+        if (!isMatch) errorsThisSecond++;
       } else if (i === val.length) {
         span.className = 'char c-sub current-char';
       } else {
@@ -764,7 +915,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       }
     }
 
-    // Extra characters typed past word length
+    // Extra characters
     var existingExtras = wordEl.getElementsByClassName('extra-char');
     while (existingExtras.length > 0) {
       existingExtras[0].parentNode.removeChild(existingExtras[0]);
@@ -777,10 +928,11 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
         if (k === val.length - 1) extra.className += ' current-char';
         extra.textContent = val.charAt(k);
         wordEl.appendChild(extra);
+        errorsThisSecond++;
       }
     }
 
-    // Master mode sudden death check
+    // Master mode sudden death
     if (cfg.diff === 'master') {
       for (var m = 0; m < val.length; m++) {
         if (m < targetWord.length && val.charAt(m) !== targetWord.charAt(m)) {
@@ -790,7 +942,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       }
     }
 
-    // Stop on error (letter) check
+    // Stop on error (letter)
     if (cfg.stop === 'letter' && val.length > 0) {
       var lastIdx = val.length - 1;
       if (lastIdx < targetWord.length && val.charAt(lastIdx) !== targetWord.charAt(lastIdx)) {
@@ -811,7 +963,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     // Stop on error (word)
     if (cfg.stop === 'word' && !isExact) return;
 
-    // Expert sudden death check
+    // Expert sudden death
     if (cfg.diff === 'expert' && !isExact) {
       failTest('Expert: Word Misspelled');
       return;
@@ -823,8 +975,11 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       if (i < val.length && i < targetWord.length) {
         if (val.charAt(i) === targetWord.charAt(i)) correctChars++;
         else incorrectChars++;
-      } else {
+      } else if (i >= targetWord.length) {
+        extraChars++;
         incorrectChars++;
+      } else {
+        missedChars++;
       }
       rawChars++;
     }
@@ -832,7 +987,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     else incorrectChars++;
     rawChars++;
 
-    // Clear cursor from finished word
     var oldWord = document.getElementById('w-' + wordIndex);
     if (oldWord) {
       var cur = oldWord.getElementsByClassName('current-char');
@@ -852,12 +1006,10 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       }
     }
 
-    // Activate next word
     var nextWord = document.getElementById('w-' + wordIndex);
     if (nextWord && nextWord.children.length > 0) {
       nextWord.children[0].className += ' current-char';
       
-      // Auto-scroll words container
       var wordTop = nextWord.offsetTop;
       var curMargin = Math.abs(parseInt(wordsInner.style.marginTop, 10) || 0);
       var wrapperH = wordsWrapper.clientHeight;
@@ -867,7 +1019,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       }
     }
 
-    // Append more words buffer
     if (wordIndex >= activeWords.length - 15) {
       appendWords(40);
     }
@@ -877,7 +1028,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     if (cfg.conf === 'max') return;
 
     if (hiddenInput.value.length === 0 && wordIndex > 0 && cfg.conf === 'off') {
-      // Step back to previous word
       var curWord = document.getElementById('w-' + wordIndex);
       if (curWord) {
         var c = curWord.getElementsByClassName('current-char');
@@ -888,15 +1038,17 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       var restored = wordHistory.pop() || '';
       hiddenInput.value = restored;
 
-      // Reset previous word's contribution from stats
       var targetWord = activeWords[wordIndex];
       var maxLen = Math.max(restored.length, targetWord.length);
       for (var i = 0; i < maxLen; i++) {
         if (i < restored.length && i < targetWord.length) {
           if (restored.charAt(i) === targetWord.charAt(i)) correctChars = Math.max(0, correctChars - 1);
           else incorrectChars = Math.max(0, incorrectChars - 1);
-        } else {
+        } else if (i >= targetWord.length) {
+          extraChars = Math.max(0, extraChars - 1);
           incorrectChars = Math.max(0, incorrectChars - 1);
+        } else {
+          missedChars = Math.max(0, missedChars - 1);
         }
         rawChars = Math.max(0, rawChars - 1);
       }
@@ -923,17 +1075,35 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     }
   }
 
-  /* â”€â”€ Test Timers & Stats â”€â”€ */
+  /* â”€â”€ Timers, Samples, & Graph â”€â”€ */
   function startTest() {
     isRunning = true;
     startTime = Date.now();
+    chartData = [];
+    errorsThisSecond = 0;
 
+    var secCounter = 0;
     timerId = setInterval(function() {
+      secCounter++;
       if (cfg.mode === 'time') {
         timeLeft--;
         timerVal.textContent = timeLeft;
         if (timeLeft <= 0) finishTest();
       }
+
+      // Record second snapshot for chart
+      var elapsed = (Date.now() - startTime) / 1000;
+      var curWpm = Math.round((correctChars / 5) / (elapsed / 60)) || 0;
+      var curRaw = Math.round((rawChars / 5) / (elapsed / 60)) || 0;
+
+      chartData.push({
+        second: secCounter,
+        wpm: curWpm,
+        raw: curRaw,
+        errors: errorsThisSecond
+      });
+      errorsThisSecond = 0;
+
       updateLiveStats();
     }, 1000);
   }
@@ -968,13 +1138,15 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     isFinished = true;
     hiddenInput.disabled = true;
 
-    resWpmLarge.textContent = '0';
-    resWpmLarge.className = 'c-err';
-    resAcc.textContent = 'FAILED';
-    resRaw.textContent = '0';
-    resChars.textContent = reason;
+    resWpmNum.textContent = '0';
+    resWpmNum.className = 'res-hero-val c-err';
+    resAccNum.textContent = 'FAIL';
+    resRawNum.textContent = '0';
+    resCharsNum.textContent = reason;
+    resConsNum.textContent = '0%';
+    resTimeNum.textContent = '0s';
 
-    showResults();
+    showResults(0, 0, 0, 0);
   }
 
   function finishTest() {
@@ -987,7 +1159,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     if (cfg.mode === 'time') elapsed = cfg.timeVal;
     if (elapsed <= 0) elapsed = 1;
 
-    // Flush last word characters
+    // Flush last word
     var val = hiddenInput.value;
     var target = activeWords[wordIndex] || '';
     for (var i = 0; i < val.length; i++) {
@@ -1004,14 +1176,41 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     if (netWpm < 0) netWpm = 0;
     if (rawWpm < 0) rawWpm = 0;
 
-    resWpmLarge.textContent = netWpm;
-    resWpmLarge.className = 'c-main';
-    resAcc.textContent = acc + '%';
-    resRaw.textContent = rawWpm;
-    resChars.textContent = correctChars + '/' + incorrectChars;
+    // Calculate Consistency %
+    var wpmSamples = [];
+    for (var s = 0; s < chartData.length; s++) {
+      wpmSamples.push(chartData[s].wpm);
+    }
+    var consistency = calculateConsistency(wpmSamples);
+
+    resWpmNum.textContent = netWpm;
+    resWpmNum.className = 'res-hero-val c-main';
+    resAccNum.textContent = acc + '%';
+    resTestType.textContent = cfg.mode + ' ' + (cfg.mode === 'time' ? cfg.timeVal : cfg.wordsVal);
+    resRawNum.textContent = rawWpm;
+    resCharsNum.textContent = correctChars + '/' + incorrectChars + '/' + extraChars + '/' + missedChars;
+    resConsNum.textContent = consistency + '%';
+    resTimeNum.textContent = Math.round(elapsed) + 's';
 
     savePB(netWpm);
-    showResults();
+    showResults(netWpm, rawWpm, acc, consistency);
+  }
+
+  function calculateConsistency(samples) {
+    if (!samples || samples.length < 2) return 100;
+    var sum = 0;
+    for (var i = 0; i < samples.length; i++) sum += samples[i];
+    var mean = sum / samples.length;
+    if (mean <= 0) return 100;
+
+    var varSum = 0;
+    for (var j = 0; j < samples.length; j++) {
+      var d = samples[j] - mean;
+      varSum += d * d;
+    }
+    var stdDev = Math.sqrt(varSum / samples.length);
+    var cv = (stdDev / mean) * 100;
+    return Math.max(0, Math.min(100, Math.round(100 - cv)));
   }
 
   function showResults() {
@@ -1019,17 +1218,157 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     document.getElementById('stats-row').style.display = 'none';
     resultsView.style.display = '-webkit-flex';
     resultsView.style.display = 'flex';
+    wordsHistoryPanel.style.display = 'none';
+
+    // Render Canvas Chart
+    setTimeout(function() {
+      drawResultChart();
+    }, 50);
   }
 
-  function resetTest() {
+  /* â”€â”€ Pure HTML5 Canvas Result Chart (Zero External Libs) â”€â”€ */
+  function drawResultChart() {
+    if (!resCanvas) return;
+    var rect = resCanvas.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    var width = rect.width || 320;
+    var height = rect.height || 95;
+
+    resCanvas.width = width * dpr;
+    resCanvas.height = height * dpr;
+
+    var ctx = resCanvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, width, height);
+
+    if (chartData.length < 1) return;
+
+    var paddingLeft = 24;
+    var paddingRight = 14;
+    var paddingTop = 12;
+    var paddingBottom = 16;
+
+    var plotW = width - paddingLeft - paddingRight;
+    var plotH = height - paddingTop - paddingBottom;
+
+    // Find max WPM for scaling
+    var maxWpm = 40;
+    for (var i = 0; i < chartData.length; i++) {
+      if (chartData[i].raw > maxWpm) maxWpm = chartData[i].raw;
+      if (chartData[i].wpm > maxWpm) maxWpm = chartData[i].wpm;
+    }
+    maxWpm = Math.ceil(maxWpm / 20) * 20 + 20;
+
+    // Grid lines & labels
+    ctx.font = '9px Consolas, monospace';
+    ctx.fillStyle = '#646669';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.strokeStyle = '#3d3f42';
+    ctx.lineWidth = 1;
+
+    var steps = 3;
+    for (var s = 0; s <= steps; s++) {
+      var val = Math.round((maxWpm / steps) * s);
+      var y = paddingTop + plotH - (s / steps) * plotH;
+      ctx.beginPath();
+      ctx.moveTo(paddingLeft, y);
+      ctx.lineTo(width - paddingRight, y);
+      ctx.stroke();
+      if (s > 0) ctx.fillText(val, paddingLeft - 4, y);
+    }
+
+    var totalPoints = Math.max(chartData.length, 2);
+
+    function getX(idx) {
+      return paddingLeft + (idx / (totalPoints - 1)) * plotW;
+    }
+    function getY(w) {
+      return paddingTop + plotH - (w / maxWpm) * plotH;
+    }
+
+    // 1. Draw Raw WPM Line (Dashed grey)
+    ctx.beginPath();
+    ctx.strokeStyle = '#646669';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([2, 3]);
+    for (var r = 0; r < chartData.length; r++) {
+      var rx = getX(r);
+      var ry = getY(chartData[r].raw);
+      if (r === 0) ctx.moveTo(rx, ry);
+      else ctx.lineTo(rx, ry);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]); // Reset line dash
+
+    // 2. Draw Net WPM Line with Fill (Gold / Accent)
+    var themeColor = '#e2b714';
+    if (cfg.theme === 'matrix') themeColor = '#00ff66';
+    if (cfg.theme === 'dracula') themeColor = '#bd93f9';
+    if (cfg.theme === 'carbon') themeColor = '#ffffff';
+    if (cfg.theme === 'paper') themeColor = '#c62828';
+
+    ctx.beginPath();
+    for (var w = 0; w < chartData.length; w++) {
+      var wx = getX(w);
+      var wy = getY(chartData[w].wpm);
+      if (w === 0) ctx.moveTo(wx, wy);
+      else ctx.lineTo(wx, wy);
+    }
+    ctx.strokeStyle = themeColor;
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    // 3. Draw Error Markers (Red Ã— dots)
+    ctx.fillStyle = '#ca4754';
+    ctx.font = 'bold 10px Consolas, monospace';
+    ctx.textAlign = 'center';
+    for (var e = 0; e < chartData.length; e++) {
+      if (chartData[e].errors > 0) {
+        var ex = getX(e);
+        ctx.fillText('Ã—', ex, paddingTop + 2);
+      }
+    }
+
+    // 4. X-Axis Time Ticks
+    ctx.fillStyle = '#646669';
+    ctx.font = '8px Consolas, monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    var xStep = Math.max(1, Math.floor(chartData.length / 5));
+    for (var t = 0; t < chartData.length; t += xStep) {
+      ctx.fillText(chartData[t].second, getX(t), paddingTop + plotH + 3);
+    }
+    if (chartData.length > 1 && (chartData.length - 1) % xStep !== 0) {
+      ctx.fillText(chartData[chartData.length - 1].second, getX(chartData.length - 1), paddingTop + plotH + 3);
+    }
+  }
+
+  /* â”€â”€ Words History Panel â”€â”€ */
+  function renderWordsHistory() {
+    var html = '';
+    for (var i = 0; i < wordHistory.length; i++) {
+      var typed = wordHistory[i];
+      var target = activeWords[i] || '';
+      var isOk = (typed === target);
+      html += '<span class="hist-word ' + (isOk ? 'correct' : 'incorrect') + '">' + escapeHtml(typed) + '</span>';
+    }
+    wordsHistoryPanel.innerHTML = html || 'No words recorded';
+  }
+
+  function resetTest(repeatSameWords) {
     clearInterval(timerId);
     isRunning = false;
     isFinished = false;
     wordIndex = 0;
     wordHistory = [];
+    chartData = [];
+    errorsThisSecond = 0;
 
     correctChars = 0;
     incorrectChars = 0;
+    extraChars = 0;
+    missedChars = 0;
     rawChars = 0;
 
     if (cfg.mode === 'time') {
@@ -1052,14 +1391,16 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     resultsView.style.display = 'none';
     focusPrompt.style.display = 'none';
 
-    var initCount = (cfg.mode === 'words') ? Math.max(cfg.wordsVal, 30) : 80;
-    activeWords = generateWords(initCount);
+    if (!repeatSameWords) {
+      var initCount = (cfg.mode === 'words') ? Math.max(cfg.wordsVal, 30) : 80;
+      activeWords = generateWords(initCount);
+    }
     renderWordsDOM();
 
     setTimeout(function() { hiddenInput.focus(); }, 30);
   }
 
-  /* â”€â”€ Event Listeners â”€â”€ */
+  /* â”€â”€ Event Handlers â”€â”€ */
   hiddenInput.addEventListener('input', function() {
     if (isFinished) return;
     if (!isRunning && hiddenInput.value.length > 0) startTest();
@@ -1071,7 +1412,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
     if (code === 9) { // Tab -> restart
       e.preventDefault();
-      resetTest();
+      resetTest(false);
       return;
     }
 
@@ -1081,7 +1422,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
         settingsModal.style.display = 'none';
         hiddenInput.focus();
       } else {
-        resetTest();
+        resetTest(false);
       }
       return;
     }
@@ -1089,7 +1430,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     if (isFinished) {
       if (code === 13 || code === 32) {
         e.preventDefault();
-        resetTest();
+        resetTest(false);
       }
       return;
     }
@@ -1110,7 +1451,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
     if (code === 13) { // Enter -> restart
       e.preventDefault();
-      resetTest();
+      resetTest(false);
       return;
     }
   });
@@ -1119,7 +1460,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     var code = e.keyCode || e.which;
     if (code === 9) {
       e.preventDefault();
-      resetTest();
+      resetTest(false);
       return;
     }
     if (document.activeElement !== hiddenInput && !isFinished) {
@@ -1151,14 +1492,24 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
         else cfg.wordsVal = parseInt(btn.getAttribute('data-val'), 10);
         saveSettings();
         applySettingsUI();
-        resetTest();
+        resetTest(false);
       });
     })(headerBtns[h]);
   }
 
-  /* Restart buttons */
-  btnRestart.addEventListener('click', function() { resetTest(); });
-  tryAgainBtn.addEventListener('click', function() { resetTest(); });
+  /* Result screen action buttons */
+  btnResNext.addEventListener('click', function() { resetTest(false); });
+  btnResRepeat.addEventListener('click', function() { resetTest(true); });
+  btnResWords.addEventListener('click', function() {
+    if (wordsHistoryPanel.style.display === 'block') {
+      wordsHistoryPanel.style.display = 'none';
+    } else {
+      renderWordsHistory();
+      wordsHistoryPanel.style.display = 'block';
+    }
+  });
+
+  btnRestart.addEventListener('click', function() { resetTest(false); });
 
   /* Settings modal */
   btnSettings.addEventListener('click', function(e) {
@@ -1183,7 +1534,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
           cfg[prop] = btn.getAttribute('data-val');
           saveSettings();
           applySettingsUI();
-          resetTest();
+          resetTest(false);
         });
       })(btns[i]);
     }
@@ -1199,19 +1550,19 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     cfg.withPunct = !cfg.withPunct;
     saveSettings();
     applySettingsUI();
-    resetTest();
+    resetTest(false);
   });
 
   setNum.addEventListener('click', function() {
     cfg.withNum = !cfg.withNum;
     saveSettings();
     applySettingsUI();
-    resetTest();
+    resetTest(false);
   });
 
   /* â”€â”€ Init â”€â”€ */
   loadSettings();
-  resetTest();
+  resetTest(false);
 })();
 </script>
 </body>
