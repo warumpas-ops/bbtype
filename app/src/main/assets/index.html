@@ -78,6 +78,19 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   position: relative;
 }
 
+/* â”€â”€ View State Toggling (100% Reliable in WebKit) â”€â”€ */
+#results-view { display: none; }
+#app-container.state-results #stats-row { display: none; }
+#app-container.state-results #words-wrapper { display: none; }
+#app-container.state-results #results-view {
+  display: block;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  overflow-y: auto;
+  padding: 2px 0;
+}
+
 /* â”€â”€ Top Bar â”€â”€ */
 #header {
   display: -webkit-box;
@@ -183,7 +196,7 @@ body.theme-paper .bg-accent { background-color: #c62828; color: #ffffff; }
   position: relative;
 }
 
-/* Caret styles (0 forced reflows) */
+/* â”€â”€ Hardware-Accelerated Carets (0 forced reflows) â”€â”€ */
 .caret-bar .current-char {
   border-left: 2px solid #e2b714;
   margin-left: -1px;
@@ -282,93 +295,65 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
   z-index: 10;
 }
 
-/* â”€â”€ FULL MONKEYTYPE RESULTS SCREEN â”€â”€ */
-#results-view {
-  display: none;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  padding: 2px 0;
-  overflow-y: auto;
-}
-
-/* Top Row: WPM / ACC / Info */
+/* â”€â”€ MONKEYTYPE RESULTS SCREEN â”€â”€ */
 #res-top-row {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: flex-start;
-  -webkit-align-items: flex-start;
-  align-items: flex-start;
-  width: 100%;
+  overflow: hidden;
   margin-bottom: 2px;
 }
 
 .res-hero-stat {
+  float: left;
   margin-right: 14px;
 }
 
 .res-hero-lbl {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1;
 }
 
 .res-hero-val {
-  font-size: 42px;
+  font-size: 38px;
   font-weight: bold;
   line-height: 1;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
 #res-meta-info {
-  margin-left: auto;
+  float: right;
   text-align: right;
   font-size: 10px;
   line-height: 1.3;
 }
 
-/* Canvas Graph */
+/* Chart Canvas */
 #res-chart-container {
   width: 100%;
-  height: 95px;
+  height: 90px;
   position: relative;
   margin: 2px 0;
+  clear: both;
 }
 
 #res-canvas {
   width: 100%;
-  height: 100%;
+  height: 90px;
   display: block;
 }
 
-/* Bottom 4-Column Stats Row */
+/* Bottom 4 Columns Stats */
 #res-bottom-grid {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
   width: 100%;
-  margin: 4px 0 6px;
+  display: table;
+  table-layout: fixed;
+  margin: 3px 0 4px;
   border-top: 1px solid #3d3f42;
-  padding-top: 4px;
+  padding-top: 3px;
+  clear: both;
 }
 
 .res-sub-col {
+  display: table-cell;
   text-align: center;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
 }
 
 .res-sub-lbl {
@@ -377,51 +362,47 @@ body.theme-paper .caret-underline .current-char { border-color: #c62828; }
 }
 
 .res-sub-val {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
 }
 
-/* Action Icons Toolbar */
+/* Actions Bar */
 #res-actions-bar {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
+  text-align: center;
   margin-bottom: 2px;
+  clear: both;
 }
 
 .res-btn {
-  background: none;
-  border: none;
+  display: inline-block;
+  background: #2c2e31;
+  border: 1px solid #444;
+  color: #d1d0c5;
   font-family: inherit;
-  font-size: 15px;
-  padding: 3px 12px;
+  font-size: 14px;
+  padding: 4px 14px;
   margin: 0 4px;
   cursor: pointer;
   border-radius: 4px;
   outline: none;
 }
 .res-btn:hover, .res-btn:active {
-  background-color: rgba(255,255,255,0.08);
+  background-color: #3e4043;
 }
 
-/* Words History Container */
+/* Words History */
 #words-history-panel {
   display: none;
-  background: rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.3);
   border-radius: 4px;
   padding: 6px;
   font-size: 12px;
   line-height: 18px;
-  max-height: 80px;
+  max-height: 70px;
   overflow-y: auto;
   margin-top: 4px;
   text-align: left;
+  clear: both;
 }
 
 .hist-word {
@@ -529,7 +510,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     </div>
   </div>
 
-  <!-- Words Area (Takes full vertical space during typing) -->
+  <!-- Words Area -->
   <div id="words-wrapper">
     <div id="words-inner"></div>
     <div id="focus-prompt" class="c-main">Tap or press any key to focus</div>
@@ -581,12 +562,12 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
     <!-- Actions Toolbar -->
     <div id="res-actions-bar">
-      <button class="res-btn c-sub" id="btn-res-next" title="Next Test">â–¶</button>
-      <button class="res-btn c-sub" id="btn-res-repeat" title="Repeat Test">â†»</button>
-      <button class="res-btn c-sub" id="btn-res-words" title="Words History">â˜°</button>
+      <button class="res-btn" id="btn-res-next" title="Next Test">â–¶ next</button>
+      <button class="res-btn" id="btn-res-repeat" title="Repeat Test">â†» repeat</button>
+      <button class="res-btn" id="btn-res-words" title="Words History">â˜° words</button>
     </div>
 
-    <!-- Words History Panel (Collapsible) -->
+    <!-- Words History Panel -->
     <div id="words-history-panel" class="c-sub"></div>
   </div>
 
@@ -725,7 +706,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
   var missedChars = 0;
   var rawChars = 0;
 
-  // Chart data timeline: array of { second, wpm, raw, errors }
   var chartData = [];
   var errorsThisSecond = 0;
 
@@ -783,9 +763,8 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
   function applySettingsUI() {
     document.body.className = 'theme-' + cfg.theme;
-    container.className = 'caret-' + cfg.caret;
+    container.className = 'caret-' + cfg.caret + (isFinished ? ' state-results' : '');
 
-    // Header pills
     var headerBtns = document.getElementById('header-menu').getElementsByTagName('button');
     for (var i = 0; i < headerBtns.length; i++) {
       var btn = headerBtns[i];
@@ -798,7 +777,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       }
     }
 
-    // Settings group buttons
     syncGroupActive('grp-theme', cfg.theme);
     syncGroupActive('grp-diff', cfg.diff);
     syncGroupActive('grp-conf', cfg.conf);
@@ -871,7 +849,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     return list;
   }
 
-  /* â”€â”€ Pre-render Words DOM â”€â”€ */
   function renderWordsDOM() {
     var html = '';
     for (var i = 0; i < activeWords.length; i++) {
@@ -891,7 +868,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  /* â”€â”€ Fast Input Handling â”€â”€ */
+  /* â”€â”€ Input Processing â”€â”€ */
   function updateWordDisplay() {
     var wordEl = document.getElementById('w-' + wordIndex);
     if (!wordEl) return;
@@ -915,7 +892,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       }
     }
 
-    // Extra characters
     var existingExtras = wordEl.getElementsByClassName('extra-char');
     while (existingExtras.length > 0) {
       existingExtras[0].parentNode.removeChild(existingExtras[0]);
@@ -932,7 +908,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       }
     }
 
-    // Master mode sudden death
     if (cfg.diff === 'master') {
       for (var m = 0; m < val.length; m++) {
         if (m < targetWord.length && val.charAt(m) !== targetWord.charAt(m)) {
@@ -942,7 +917,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       }
     }
 
-    // Stop on error (letter)
     if (cfg.stop === 'letter' && val.length > 0) {
       var lastIdx = val.length - 1;
       if (lastIdx < targetWord.length && val.charAt(lastIdx) !== targetWord.charAt(lastIdx)) {
@@ -960,16 +934,13 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     var targetWord = activeWords[wordIndex];
     var isExact = (val === targetWord);
 
-    // Stop on error (word)
     if (cfg.stop === 'word' && !isExact) return;
 
-    // Expert sudden death
     if (cfg.diff === 'expert' && !isExact) {
       failTest('Expert: Word Misspelled');
       return;
     }
 
-    // Calculate characters
     var maxLen = Math.max(val.length, targetWord.length);
     for (var i = 0; i < maxLen; i++) {
       if (i < val.length && i < targetWord.length) {
@@ -1075,7 +1046,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     }
   }
 
-  /* â”€â”€ Timers, Samples, & Graph â”€â”€ */
+  /* â”€â”€ Test Lifecycle â”€â”€ */
   function startTest() {
     isRunning = true;
     startTime = Date.now();
@@ -1088,10 +1059,12 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       if (cfg.mode === 'time') {
         timeLeft--;
         timerVal.textContent = timeLeft;
-        if (timeLeft <= 0) finishTest();
+        if (timeLeft <= 0) {
+          finishTest();
+          return;
+        }
       }
 
-      // Record second snapshot for chart
       var elapsed = (Date.now() - startTime) / 1000;
       var curWpm = Math.round((correctChars / 5) / (elapsed / 60)) || 0;
       var curRaw = Math.round((rawChars / 5) / (elapsed / 60)) || 0;
@@ -1146,10 +1119,12 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     resConsNum.textContent = '0%';
     resTimeNum.textContent = '0s';
 
-    showResults(0, 0, 0, 0);
+    container.className = 'caret-' + cfg.caret + ' state-results';
+    wordsHistoryPanel.style.display = 'none';
   }
 
   function finishTest() {
+    if (isFinished) return;
     clearInterval(timerId);
     isRunning = false;
     isFinished = true;
@@ -1168,15 +1143,14 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       rawChars++;
     }
 
-    var netWpm = Math.round((correctChars / 5) / (elapsed / 60));
-    var rawWpm = Math.round((rawChars / 5) / (elapsed / 60));
+    var netWpm = Math.round((correctChars / 5) / (elapsed / 60)) || 0;
+    var rawWpm = Math.round((rawChars / 5) / (elapsed / 60)) || 0;
     var total = correctChars + incorrectChars;
     var acc = total > 0 ? Math.round((correctChars / total) * 100) : 0;
 
     if (netWpm < 0) netWpm = 0;
     if (rawWpm < 0) rawWpm = 0;
 
-    // Calculate Consistency %
     var wpmSamples = [];
     for (var s = 0; s < chartData.length; s++) {
       wpmSamples.push(chartData[s].wpm);
@@ -1193,7 +1167,14 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     resTimeNum.textContent = Math.round(elapsed) + 's';
 
     savePB(netWpm);
-    showResults(netWpm, rawWpm, acc, consistency);
+
+    // Switch view via CSS class state-results
+    container.className = 'caret-' + cfg.caret + ' state-results';
+    wordsHistoryPanel.style.display = 'none';
+
+    setTimeout(function() {
+      drawResultChart(netWpm, rawWpm);
+    }, 40);
   }
 
   function calculateConsistency(samples) {
@@ -1213,95 +1194,82 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     return Math.max(0, Math.min(100, Math.round(100 - cv)));
   }
 
-  function showResults() {
-    wordsWrapper.style.display = 'none';
-    document.getElementById('stats-row').style.display = 'none';
-    resultsView.style.display = '-webkit-flex';
-    resultsView.style.display = 'flex';
-    wordsHistoryPanel.style.display = 'none';
-
-    // Render Canvas Chart
-    setTimeout(function() {
-      drawResultChart();
-    }, 50);
-  }
-
-  /* â”€â”€ Pure HTML5 Canvas Result Chart (Zero External Libs) â”€â”€ */
-  function drawResultChart() {
+  /* â”€â”€ Draw HTML5 2D Canvas Chart â”€â”€ */
+  function drawResultChart(finalWpm, finalRaw) {
     if (!resCanvas) return;
-    var rect = resCanvas.getBoundingClientRect();
+    var width = resCanvas.offsetWidth || 300;
+    var height = resCanvas.offsetHeight || 88;
     var dpr = window.devicePixelRatio || 1;
-    var width = rect.width || 320;
-    var height = rect.height || 95;
 
     resCanvas.width = width * dpr;
     resCanvas.height = height * dpr;
 
     var ctx = resCanvas.getContext('2d');
+    if (!ctx) return;
+
     ctx.scale(dpr, dpr);
     ctx.clearRect(0, 0, width, height);
 
-    if (chartData.length < 1) return;
-
-    var paddingLeft = 24;
-    var paddingRight = 14;
-    var paddingTop = 12;
-    var paddingBottom = 16;
-
-    var plotW = width - paddingLeft - paddingRight;
-    var plotH = height - paddingTop - paddingBottom;
-
-    // Find max WPM for scaling
-    var maxWpm = 40;
-    for (var i = 0; i < chartData.length; i++) {
-      if (chartData[i].raw > maxWpm) maxWpm = chartData[i].raw;
-      if (chartData[i].wpm > maxWpm) maxWpm = chartData[i].wpm;
+    var data = chartData.slice();
+    if (data.length === 0) {
+      data.push({ second: 1, wpm: finalWpm || 0, raw: finalRaw || 0, errors: 0 });
+      data.push({ second: 2, wpm: finalWpm || 0, raw: finalRaw || 0, errors: 0 });
+    } else if (data.length === 1) {
+      data.push({ second: 2, wpm: data[0].wpm, raw: data[0].raw, errors: 0 });
     }
-    maxWpm = Math.ceil(maxWpm / 20) * 20 + 20;
 
-    // Grid lines & labels
-    ctx.font = '9px Consolas, monospace';
+    var padL = 22;
+    var padR = 12;
+    var padT = 10;
+    var padB = 14;
+    var plotW = width - padL - padR;
+    var plotH = height - padT - padB;
+
+    var maxW = 40;
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].raw > maxW) maxW = data[i].raw;
+      if (data[i].wpm > maxW) maxW = data[i].wpm;
+    }
+    maxW = Math.ceil(maxW / 20) * 20 + 20;
+
+    // Grid lines
+    ctx.font = '8px monospace';
     ctx.fillStyle = '#646669';
     ctx.textAlign = 'right';
     ctx.textBaseline = 'middle';
     ctx.strokeStyle = '#3d3f42';
     ctx.lineWidth = 1;
 
-    var steps = 3;
+    var steps = 2;
     for (var s = 0; s <= steps; s++) {
-      var val = Math.round((maxWpm / steps) * s);
-      var y = paddingTop + plotH - (s / steps) * plotH;
+      var val = Math.round((maxW / steps) * s);
+      var y = padT + plotH - (s / steps) * plotH;
       ctx.beginPath();
-      ctx.moveTo(paddingLeft, y);
-      ctx.lineTo(width - paddingRight, y);
+      ctx.moveTo(padL, y);
+      ctx.lineTo(width - padR, y);
       ctx.stroke();
-      if (s > 0) ctx.fillText(val, paddingLeft - 4, y);
+      if (s > 0) ctx.fillText(val, padL - 3, y);
     }
 
-    var totalPoints = Math.max(chartData.length, 2);
+    var totalPoints = data.length;
+    function getX(idx) { return padL + (idx / (totalPoints - 1)) * plotW; }
+    function getY(w) { return padT + plotH - (w / maxW) * plotH; }
 
-    function getX(idx) {
-      return paddingLeft + (idx / (totalPoints - 1)) * plotW;
-    }
-    function getY(w) {
-      return paddingTop + plotH - (w / maxWpm) * plotH;
-    }
-
-    // 1. Draw Raw WPM Line (Dashed grey)
+    // 1. Raw Line (Dashed grey)
     ctx.beginPath();
     ctx.strokeStyle = '#646669';
     ctx.lineWidth = 1.5;
-    ctx.setLineDash([2, 3]);
-    for (var r = 0; r < chartData.length; r++) {
+    if (ctx.setLineDash) ctx.setLineDash([2, 2]);
+    for (var r = 0; r < data.length; r++) {
       var rx = getX(r);
-      var ry = getY(chartData[r].raw);
+      var ry = getY(data[r].raw);
       if (r === 0) ctx.moveTo(rx, ry);
       else ctx.lineTo(rx, ry);
     }
     ctx.stroke();
-    ctx.setLineDash([]); // Reset line dash
+    if (ctx.setLineDash) ctx.setLineDash([]);
 
-    // 2. Draw Net WPM Line with Fill (Gold / Accent)
+    // 2. Net WPM Line
     var themeColor = '#e2b714';
     if (cfg.theme === 'matrix') themeColor = '#00ff66';
     if (cfg.theme === 'dracula') themeColor = '#bd93f9';
@@ -1309,42 +1277,40 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     if (cfg.theme === 'paper') themeColor = '#c62828';
 
     ctx.beginPath();
-    for (var w = 0; w < chartData.length; w++) {
+    for (var w = 0; w < data.length; w++) {
       var wx = getX(w);
-      var wy = getY(chartData[w].wpm);
+      var wy = getY(data[w].wpm);
       if (w === 0) ctx.moveTo(wx, wy);
       else ctx.lineTo(wx, wy);
     }
     ctx.strokeStyle = themeColor;
-    ctx.lineWidth = 2.5;
+    ctx.lineWidth = 2.2;
     ctx.stroke();
 
-    // 3. Draw Error Markers (Red Ã— dots)
+    // 3. Error crosses
     ctx.fillStyle = '#ca4754';
-    ctx.font = 'bold 10px Consolas, monospace';
+    ctx.font = 'bold 9px monospace';
     ctx.textAlign = 'center';
-    for (var e = 0; e < chartData.length; e++) {
-      if (chartData[e].errors > 0) {
-        var ex = getX(e);
-        ctx.fillText('Ã—', ex, paddingTop + 2);
+    for (var e = 0; e < data.length; e++) {
+      if (data[e].errors > 0) {
+        ctx.fillText('Ã—', getX(e), padT + 2);
       }
     }
 
-    // 4. X-Axis Time Ticks
+    // 4. X-Axis Ticks
     ctx.fillStyle = '#646669';
-    ctx.font = '8px Consolas, monospace';
+    ctx.font = '8px monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    var xStep = Math.max(1, Math.floor(chartData.length / 5));
-    for (var t = 0; t < chartData.length; t += xStep) {
-      ctx.fillText(chartData[t].second, getX(t), paddingTop + plotH + 3);
+    var xStep = Math.max(1, Math.floor(data.length / 4));
+    for (var t = 0; t < data.length; t += xStep) {
+      ctx.fillText(data[t].second, getX(t), padT + plotH + 2);
     }
-    if (chartData.length > 1 && (chartData.length - 1) % xStep !== 0) {
-      ctx.fillText(chartData[chartData.length - 1].second, getX(chartData.length - 1), paddingTop + plotH + 3);
+    if (data.length > 1 && (data.length - 1) % xStep !== 0) {
+      ctx.fillText(data[data.length - 1].second, getX(data.length - 1), padT + plotH + 2);
     }
   }
 
-  /* â”€â”€ Words History Panel â”€â”€ */
   function renderWordsHistory() {
     var html = '';
     for (var i = 0; i < wordHistory.length; i++) {
@@ -1353,7 +1319,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       var isOk = (typed === target);
       html += '<span class="hist-word ' + (isOk ? 'correct' : 'incorrect') + '">' + escapeHtml(typed) + '</span>';
     }
-    wordsHistoryPanel.innerHTML = html || 'No words recorded';
+    wordsHistoryPanel.innerHTML = html || 'No words typed';
   }
 
   function resetTest(repeatSameWords) {
@@ -1385,11 +1351,9 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     hiddenInput.disabled = false;
     wordsInner.style.marginTop = '0px';
 
-    wordsWrapper.style.display = 'block';
-    document.getElementById('stats-row').style.display = '-webkit-flex';
-    document.getElementById('stats-row').style.display = 'flex';
-    resultsView.style.display = 'none';
+    container.className = 'caret-' + cfg.caret;
     focusPrompt.style.display = 'none';
+    wordsHistoryPanel.style.display = 'none';
 
     if (!repeatSameWords) {
       var initCount = (cfg.mode === 'words') ? Math.max(cfg.wordsVal, 30) : 80;
@@ -1410,13 +1374,13 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
   hiddenInput.addEventListener('keydown', function(e) {
     var code = e.keyCode || e.which;
 
-    if (code === 9) { // Tab -> restart
+    if (code === 9) {
       e.preventDefault();
       resetTest(false);
       return;
     }
 
-    if (code === 27) { // Escape -> close modal or restart
+    if (code === 27) {
       e.preventDefault();
       if (settingsModal.style.display === 'flex' || settingsModal.style.display === '-webkit-flex') {
         settingsModal.style.display = 'none';
@@ -1435,13 +1399,13 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       return;
     }
 
-    if (code === 32) { // Space
+    if (code === 32) {
       e.preventDefault();
       handleSpace();
       return;
     }
 
-    if (code === 8) { // Backspace
+    if (code === 8) {
       if (hiddenInput.value.length === 0) {
         e.preventDefault();
         handleBackspace();
@@ -1449,7 +1413,7 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
       return;
     }
 
-    if (code === 13) { // Enter -> restart
+    if (code === 13) {
       e.preventDefault();
       resetTest(false);
       return;
@@ -1468,7 +1432,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     }
   });
 
-  /* Focus handling */
   hiddenInput.addEventListener('focus', function() { focusPrompt.style.display = 'none'; });
   hiddenInput.addEventListener('blur', function() {
     if (!isFinished && settingsModal.style.display !== 'flex' && settingsModal.style.display !== '-webkit-flex') {
@@ -1479,7 +1442,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
   wordsWrapper.addEventListener('click', function() { hiddenInput.focus(); });
   focusPrompt.addEventListener('click', function() { hiddenInput.focus(); });
 
-  /* Header quick modes */
   var headerBtns = document.getElementById('header-menu').getElementsByTagName('button');
   for (var h = 0; h < headerBtns.length; h++) {
     (function(btn) {
@@ -1497,7 +1459,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
     })(headerBtns[h]);
   }
 
-  /* Result screen action buttons */
   btnResNext.addEventListener('click', function() { resetTest(false); });
   btnResRepeat.addEventListener('click', function() { resetTest(true); });
   btnResWords.addEventListener('click', function() {
@@ -1511,7 +1472,6 @@ body.theme-paper .set-btn.active { background: #c62828; color: #ffffff; }
 
   btnRestart.addEventListener('click', function() { resetTest(false); });
 
-  /* Settings modal */
   btnSettings.addEventListener('click', function(e) {
     e.stopPropagation();
     settingsModal.style.display = '-webkit-flex';
