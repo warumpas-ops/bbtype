@@ -1,0 +1,11 @@
+# Build and output artifacts
+build_output/
+*.apk.idsig
+*.log
+deploy_releases.ps1
+
+# Gradle & OS
+.gradle/
+local.properties
+.DS_Store
+Thumbs.db

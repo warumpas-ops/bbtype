@@ -1,0 +1,633 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BBType</title>
+<style>
+* { margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  background: #323437;
+  color: #d1d0c5;
+  font-family: Consolas, 'Courier New', monospace;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px 16px 8px;
+  position: relative;
+}
+
+/* â”€â”€ Header â”€â”€ */
+#header {
+  text-align: center;
+  margin-bottom: 12px;
+  position: relative;
+}
+#logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #e2b714;
+  letter-spacing: 2px;
+  display: inline-block;
+}
+#logo span { color: #646669; font-weight: normal; }
+
+/* â”€â”€ Mode buttons â”€â”€ */
+#modes {
+  text-align: center;
+  margin-bottom: 12px;
+}
+.mode-btn {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: #646669;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 15px;
+  padding: 6px 16px;
+  margin: 0 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+}
+.mode-btn.active {
+  color: #e2b714;
+}
+
+/* â”€â”€ Timer + live WPM bar â”€â”€ */
+#stats-bar {
+  text-align: center;
+  margin-bottom: 14px;
+  height: 36px;
+  line-height: 36px;
+}
+#timer {
+  font-size: 32px;
+  color: #e2b714;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 48px;
+}
+#live-wpm {
+  font-size: 14px;
+  color: #646669;
+  display: inline-block;
+  margin-left: 16px;
+}
+
+/* â”€â”€ Words area â”€â”€ */
+#words-wrapper {
+  height: 132px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 12px;
+}
+#words {
+  position: relative;
+  -webkit-transition: margin-top 0.15s ease;
+  transition: margin-top 0.15s ease;
+}
+.word {
+  display: inline-block;
+  margin: 0 10px 8px 0;
+  font-size: 20px;
+  line-height: 28px;
+  vertical-align: top;
+}
+.char {
+  color: #646669;
+  position: relative;
+}
+.word.active .char {
+  color: #d1d0c5;
+}
+.char.correct { color: #d1d0c5; }
+.char.incorrect { color: #ca4754; }
+.word.active .char.correct { color: #d1d0c5; }
+.word.active .char.incorrect { color: #ca4754; }
+.char.extra { color: #7e2a33; }
+.word.active .char.extra { color: #ca4754; }
+
+/* Cursor */
+.word.active .char.current {
+  border-left: 2px solid #e2b714;
+  margin-left: -1px;
+  padding-left: 1px;
+}
+@-webkit-keyframes blink {
+  0%, 100% { border-color: #e2b714; }
+  50% { border-color: transparent; }
+}
+@keyframes blink {
+  0%, 100% { border-color: #e2b714; }
+  50% { border-color: transparent; }
+}
+.word.active .char.current {
+  -webkit-animation: blink 1s infinite;
+  animation: blink 1s infinite;
+}
+
+/* â”€â”€ Hidden input â”€â”€ */
+#input {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  border: none;
+  outline: none;
+  padding: 0;
+  font-size: 16px;
+}
+
+/* â”€â”€ Focus warning â”€â”€ */
+#focus-warning {
+  display: none;
+  text-align: center;
+  color: #646669;
+  font-size: 14px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* â”€â”€ Restart â”€â”€ */
+#restart {
+  text-align: center;
+  margin-top: 10px;
+}
+#restart-btn {
+  background: none;
+  border: none;
+  color: #646669;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 14px;
+  padding: 8px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+}
+#restart-btn:hover, #restart-btn:active { color: #d1d0c5; }
+
+/* â”€â”€ Results screen â”€â”€ */
+#result {
+  display: none;
+  text-align: center;
+  padding-top: 30px;
+}
+#result-wpm {
+  font-size: 64px;
+  color: #e2b714;
+  font-weight: bold;
+  line-height: 1;
+}
+#result-label {
+  font-size: 18px;
+  color: #646669;
+  margin-bottom: 24px;
+}
+#result-details {
+  margin: 20px 0;
+}
+#result-details .stat-row {
+  font-size: 16px;
+  color: #646669;
+  margin: 8px 0;
+}
+#result-details .stat-val {
+  color: #d1d0c5;
+  font-weight: bold;
+}
+#result-restart {
+  background: none;
+  border: 2px solid #646669;
+  color: #d1d0c5;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 16px;
+  padding: 10px 28px;
+  cursor: pointer;
+  border-radius: 6px;
+  outline: none;
+  margin-top: 16px;
+}
+#result-restart:hover, #result-restart:active {
+  border-color: #e2b714;
+  color: #e2b714;
+}
+
+/* â”€â”€ Blur overlay when unfocused â”€â”€ */
+#words-wrapper.blurred {
+  opacity: 0.3;
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div id="header">
+    <div id="logo">bb<span>type</span></div>
+  </div>
+
+  <div id="modes">
+    <button class="mode-btn" data-time="15">15</button>
+    <button class="mode-btn active" data-time="30">30</button>
+    <button class="mode-btn" data-time="60">60</button>
+  </div>
+
+  <div id="stats-bar">
+    <span id="timer">30</span>
+    <span id="live-wpm"></span>
+  </div>
+
+  <div id="words-wrapper">
+    <div id="words"></div>
+  </div>
+
+  <div id="focus-warning">tap here to focus</div>
+
+  <input type="text" id="input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+
+  <div id="restart">
+    <button id="restart-btn">â†» restart</button>
+  </div>
+
+  <div id="result">
+    <div id="result-wpm">0</div>
+    <div id="result-label">words per minute</div>
+    <div id="result-details">
+      <div class="stat-row">accuracy <span class="stat-val" id="result-acc">0</span>%</div>
+      <div class="stat-row">correct <span class="stat-val" id="result-correct">0</span></div>
+      <div class="stat-row">incorrect <span class="stat-val" id="result-incorrect">0</span></div>
+      <div class="stat-row">chars/sec <span class="stat-val" id="result-cps">0</span></div>
+    </div>
+    <button id="result-restart">try again</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  /* â”€â”€ Word list (200 common English words) â”€â”€ */
+  var wordList = [
+    'the','be','of','and','a','to','in','he','have','it','that','for',
+    'they','with','as','not','on','she','at','by','this','we','you','do',
+    'but','from','or','which','one','would','all','will','there','say',
+    'who','make','when','can','more','if','no','man','out','other','so',
+    'what','time','up','go','about','than','into','could','only','new',
+    'year','some','take','come','these','know','see','use','get','like',
+    'then','first','any','work','now','may','such','give','over','think',
+    'most','even','find','day','also','after','way','many','must','look',
+    'before','great','back','through','long','where','much','should',
+    'well','people','down','own','just','because','good','each','those',
+    'feel','seem','how','high','too','place','little','world','very',
+    'still','hand','old','life','tell','write','here','show','house',
+    'both','between','need','mean','call','under','last','right','move',
+    'thing','school','never','same','begin','while','number','part',
+    'turn','real','leave','might','want','point','form','off','child',
+    'few','small','since','ask','late','home','large','end','open',
+    'follow','again','hold','around','head','word','keep','face','group',
+    'play','stand','early','course','change','help','line','city','put',
+    'close','case','force','meet','once','water','upon','war','build',
+    'hear','light','live','every','country','bring','let','side','try',
+    'name','run','read','door','set','order','eye','plan','air','story',
+    'power','grow','best','night','start','stop','add','love','far',
+    'idea','often','above','learn','real','team','does','room','land',
+    'body','car','earth','food','sure','watch','next','left'
+  ];
+
+  /* â”€â”€ State â”€â”€ */
+  var words = [];
+  var currentWordIndex = 0;
+  var currentInput = '';
+  var typedHistory = [];
+  var testTime = 30;
+  var timeLeft = 30;
+  var timerInterval = null;
+  var started = false;
+  var finished = false;
+  var correctChars = 0;
+  var incorrectChars = 0;
+  var startTime = 0;
+
+  /* â”€â”€ DOM refs â”€â”€ */
+  var wordsEl = document.getElementById('words');
+  var wordsWrapperEl = document.getElementById('words-wrapper');
+  var inputEl = document.getElementById('input');
+  var timerEl = document.getElementById('timer');
+  var liveWpmEl = document.getElementById('live-wpm');
+  var focusWarningEl = document.getElementById('focus-warning');
+  var resultEl = document.getElementById('result');
+  var resultWpmEl = document.getElementById('result-wpm');
+  var resultAccEl = document.getElementById('result-acc');
+  var resultCorrectEl = document.getElementById('result-correct');
+  var resultIncorrectEl = document.getElementById('result-incorrect');
+  var resultCpsEl = document.getElementById('result-cps');
+  var restartWrap = document.getElementById('restart');
+  var statsBar = document.getElementById('stats-bar');
+  var modesEl = document.getElementById('modes');
+
+  /* â”€â”€ Helpers â”€â”€ */
+  function shuffle(arr) {
+    var i, j, tmp;
+    for (i = arr.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    }
+    return arr;
+  }
+
+  function generateWords(count) {
+    var result = [];
+    while (result.length < count) {
+      var pool = shuffle(wordList.slice());
+      for (var i = 0; i < pool.length && result.length < count; i++) {
+        result.push(pool[i]);
+      }
+    }
+    return result;
+  }
+
+  /* â”€â”€ Rendering â”€â”€ */
+  function renderAllWords() {
+    var html = '';
+    for (var i = 0; i < words.length; i++) {
+      var wc = 'word';
+      if (i === currentWordIndex) wc += ' active';
+      else if (i < currentWordIndex) wc += ' typed';
+      html += '<div class="' + wc + '">';
+      for (var j = 0; j < words[i].length; j++) {
+        var cc = 'char';
+        if (i === currentWordIndex && j === 0) cc += ' current';
+        html += '<span class="' + cc + '">' + words[i].charAt(j) + '</span>';
+      }
+      html += '</div>';
+    }
+    wordsEl.innerHTML = html;
+  }
+
+  function updateActiveWord() {
+    var children = wordsEl.children;
+    if (currentWordIndex >= children.length) return;
+    var el = children[currentWordIndex];
+    var word = words[currentWordIndex];
+    var html = '';
+
+    for (var j = 0; j < word.length; j++) {
+      var cc = 'char';
+      if (j < currentInput.length) {
+        cc += currentInput.charAt(j) === word.charAt(j) ? ' correct' : ' incorrect';
+      } else if (j === currentInput.length) {
+        cc += ' current';
+      }
+      html += '<span class="' + cc + '">' + word.charAt(j) + '</span>';
+    }
+    /* extra chars typed beyond word length */
+    for (var k = word.length; k < currentInput.length; k++) {
+      html += '<span class="char incorrect extra">' + currentInput.charAt(k) + '</span>';
+    }
+
+    el.innerHTML = html;
+  }
+
+  function scrollToActive() {
+    var children = wordsEl.children;
+    if (currentWordIndex >= children.length) return;
+    var active = children[currentWordIndex];
+    var wrapperH = wordsWrapperEl.clientHeight;
+    var lineH = active.offsetHeight + 10;
+    var activeTop = active.offsetTop;
+    var curMargin = Math.abs(parseInt(wordsEl.style.marginTop, 10) || 0);
+
+    if (activeTop + lineH > curMargin + wrapperH) {
+      var newMargin = Math.max(0, activeTop - lineH);
+      wordsEl.style.marginTop = '-' + newMargin + 'px';
+    }
+  }
+
+  /* â”€â”€ Game logic â”€â”€ */
+  function startTimer() {
+    started = true;
+    startTime = Date.now();
+    timerInterval = setInterval(function() {
+      timeLeft--;
+      timerEl.textContent = timeLeft;
+      updateLiveWpm();
+      if (timeLeft <= 0) { finishTest(); }
+    }, 1000);
+  }
+
+  function updateLiveWpm() {
+    var elapsed = (Date.now() - startTime) / 1000;
+    if (elapsed <= 0) return;
+    var wpm = Math.round((correctChars / 5) / (elapsed / 60));
+    if (isNaN(wpm) || !isFinite(wpm)) wpm = 0;
+    liveWpmEl.textContent = wpm + ' wpm';
+  }
+
+  function completeWord() {
+    var word = words[currentWordIndex];
+    var typed = currentInput;
+    var maxLen = Math.max(word.length, typed.length);
+
+    for (var i = 0; i < maxLen; i++) {
+      if (i < word.length && i < typed.length) {
+        if (typed.charAt(i) === word.charAt(i)) { correctChars++; }
+        else { incorrectChars++; }
+      } else {
+        incorrectChars++;
+      }
+    }
+    /* count the space as a correct char for WPM calculation */
+    correctChars++;
+
+    typedHistory.push(typed);
+
+    /* finalize current word in DOM */
+    var children = wordsEl.children;
+    children[currentWordIndex].className = 'word typed';
+
+    currentWordIndex++;
+    currentInput = '';
+    inputEl.value = '';
+
+    /* generate more words if running low */
+    if (currentWordIndex >= words.length - 15) {
+      var more = generateWords(50);
+      words = words.concat(more);
+      var html = '';
+      for (var i = 0; i < more.length; i++) {
+        html += '<div class="word">';
+        for (var j = 0; j < more[i].length; j++) {
+          html += '<span class="char">' + more[i].charAt(j) + '</span>';
+        }
+        html += '</div>';
+      }
+      wordsEl.insertAdjacentHTML('beforeend', html);
+    }
+
+    /* activate next word */
+    children = wordsEl.children;
+    if (currentWordIndex < children.length) {
+      children[currentWordIndex].className = 'word active';
+      updateActiveWord();
+    }
+
+    scrollToActive();
+    updateLiveWpm();
+  }
+
+  function finishTest() {
+    clearInterval(timerInterval);
+    finished = true;
+    inputEl.disabled = true;
+
+    /* count any partially typed word */
+    if (currentInput.length > 0) {
+      var word = words[currentWordIndex];
+      var typed = currentInput;
+      var maxLen = Math.max(word.length, typed.length);
+      for (var i = 0; i < maxLen; i++) {
+        if (i < word.length && i < typed.length) {
+          if (typed.charAt(i) === word.charAt(i)) { correctChars++; }
+          else { incorrectChars++; }
+        } else { incorrectChars++; }
+      }
+    }
+
+    var total = correctChars + incorrectChars;
+    var accuracy = total > 0 ? Math.round((correctChars / total) * 100) : 0;
+    var wpm = Math.round((correctChars / 5) / (testTime / 60));
+    var cps = (correctChars / testTime).toFixed(1);
+
+    resultWpmEl.textContent = wpm;
+    resultAccEl.textContent = accuracy;
+    resultCorrectEl.textContent = correctChars;
+    resultIncorrectEl.textContent = incorrectChars;
+    resultCpsEl.textContent = cps;
+
+    wordsWrapperEl.style.display = 'none';
+    statsBar.style.display = 'none';
+    liveWpmEl.textContent = '';
+    restartWrap.style.display = 'none';
+    resultEl.style.display = 'block';
+  }
+
+  function reset() {
+    clearInterval(timerInterval);
+    started = false;
+    finished = false;
+    currentWordIndex = 0;
+    currentInput = '';
+    typedHistory = [];
+    correctChars = 0;
+    incorrectChars = 0;
+    timeLeft = testTime;
+
+    timerEl.textContent = testTime;
+    liveWpmEl.textContent = '';
+    inputEl.value = '';
+    inputEl.disabled = false;
+    wordsEl.style.marginTop = '0px';
+
+    wordsWrapperEl.style.display = 'block';
+    statsBar.style.display = 'block';
+    restartWrap.style.display = 'block';
+    resultEl.style.display = 'none';
+    focusWarningEl.style.display = 'none';
+    wordsWrapperEl.className = wordsWrapperEl.className.replace(' blurred', '');
+
+    words = generateWords(100);
+    renderAllWords();
+
+    inputEl.focus();
+  }
+
+  /* â”€â”€ Event listeners â”€â”€ */
+  inputEl.addEventListener('input', function() {
+    if (finished) return;
+    if (!started && inputEl.value.length > 0) { startTimer(); }
+    currentInput = inputEl.value;
+    updateActiveWord();
+  });
+
+  inputEl.addEventListener('keydown', function(e) {
+    if (finished) return;
+    var key = e.keyCode || e.which;
+
+    /* Space â†’ advance word */
+    if (key === 32) {
+      e.preventDefault();
+      if (currentInput.length === 0) return;
+      completeWord();
+      return;
+    }
+    /* Tab â†’ restart */
+    if (key === 9) {
+      e.preventDefault();
+      reset();
+      return;
+    }
+  });
+
+  /* Focus management */
+  inputEl.addEventListener('focus', function() {
+    focusWarningEl.style.display = 'none';
+    var cn = wordsWrapperEl.className;
+    wordsWrapperEl.className = cn.replace(' blurred', '');
+  });
+
+  inputEl.addEventListener('blur', function() {
+    if (!finished) {
+      focusWarningEl.style.display = 'block';
+      if (wordsWrapperEl.className.indexOf('blurred') === -1) {
+        wordsWrapperEl.className += ' blurred';
+      }
+    }
+  });
+
+  document.addEventListener('click', function() {
+    if (!finished) { inputEl.focus(); }
+  });
+
+  focusWarningEl.addEventListener('click', function() {
+    inputEl.focus();
+  });
+
+  /* Mode buttons */
+  var modeButtons = document.querySelectorAll('.mode-btn');
+  for (var m = 0; m < modeButtons.length; m++) {
+    (function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var t = parseInt(btn.getAttribute('data-time'), 10);
+        testTime = t;
+        for (var j = 0; j < modeButtons.length; j++) {
+          modeButtons[j].className = 'mode-btn';
+        }
+        btn.className = 'mode-btn active';
+        reset();
+      });
+    })(modeButtons[m]);
+  }
+
+  /* Restart buttons */
+  document.getElementById('restart-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    reset();
+  });
+  document.getElementById('result-restart').addEventListener('click', function(e) {
+    e.stopPropagation();
+    reset();
+  });
+
+  /* â”€â”€ Init â”€â”€ */
+  reset();
+})();
+</script>
+</body>
+</html>
