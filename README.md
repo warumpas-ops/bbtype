@@ -4,20 +4,21 @@ A fast, lightweight, zero-dependency, and offline typing speed test built specif
 
 ---
 
-## 📸 Screenshots
+## 📸 Real BlackBerry Q5 Screenshots (720×720 Native)
 
-| Classic Monkeytype (Dark) | Official Paper Theme (Light) |
+*Direct unscaled captures taken on physical BlackBerry Q5 hardware running BBType.*
+
+| Active Typing (Dark Theme) | Official Paper Theme (Light Mode) |
 | :---: | :---: |
 | ![Monkeytype Theme](screenshots/screenshot_1_monkeytype.png) | ![Paper Theme](screenshots/screenshot_2_paper.png) |
 
-| Tape Mode (Horizontal Scroll) | Results & 2D Canvas Analytics |
+| Results & 2D Canvas Analytics (Dark) | Results Screen (Paper Light Theme) |
 | :---: | :---: |
-| ![Tape Mode](screenshots/screenshot_3_tapemode.png) | ![Results Screen](screenshots/screenshot_4_results.png) |
+| ![Results Dark](screenshots/screenshot_3_results_dark.png) | ![Results Paper](screenshots/screenshot_4_results_paper.png) |
 
-<p align="center">
-  <b>In-App Settings Drawer</b><br/>
-  <img src="screenshots/screenshot_5_settings.png" width="360" alt="Settings Drawer" />
-</p>
+| In-App Settings Drawer | Ready to Type (15s Mode) |
+| :---: | :---: |
+| ![Settings Drawer](screenshots/screenshot_5_settings.png) | ![Ready State](screenshots/screenshot_6_idle_dark.png) |
 
 ---
 
